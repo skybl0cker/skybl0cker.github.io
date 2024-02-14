@@ -1,64 +1,82 @@
-body {
-    font-family: Arial, sans-serif;
+/* Reset some default styles for better cross-browser consistency */
+body, h1, h2, h3, p, ul, li {
     margin: 0;
     padding: 0;
-}
-
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-}
-
-header h1 {
-    margin: 0;
-}
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-main {
-    padding: 20px;
-}
-
-section {
-    margin-bottom: 40px;
-}
-
-iframe {
-    display: block;
+  }
+  
+  /* Apply a box-sizing border-box model to all elements */
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Set a base font size and line height for better readability */
+  body {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  
+  /* Set a maximum width for the main content to improve readability on larger screens */
+  .container {
+    max-width: 1200px;
     margin: 0 auto;
-}
-
-footer {
+    padding: 20px;
+  }
+  
+  /* Style header */
+  header {
     background-color: #333;
     color: #fff;
-    padding: 20px;
-    text-align: center;
-}
-
-footer ul {
-    padding: 0;
-}
-
-footer ul li {
-    display: inline;
-    margin-right: 10px;
-}
-
-footer ul li a {
-    color: #fff;
+    padding: 10px 0;
+  }
+  
+  /* Style navigation menu */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-right: 20px;
+  }
+  
+  nav a {
     text-decoration: none;
-}
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  /* Style main content area */
+  main {
+    padding: 20px 0;
+  }
+  
+  /* Style footer */
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  /* Apply responsive design for smaller screens */
+  @media screen and (max-width: 768px) {
+    nav {
+      flex-direction: column;
+    }
+  
+    nav ul {
+      margin-top: 10px;
+    }
+  
+    nav ul li {
+      margin: 0;
+    }
+  }
+  
