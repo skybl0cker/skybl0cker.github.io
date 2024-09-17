@@ -24,6 +24,7 @@
             width: 100%;
             height: 100vh;
             perspective: 600px;
+            z-index: 0; /* Ensure the grid is behind the text and nav */
         }
         .grid {
             width: 100%;
@@ -35,6 +36,22 @@
             transform-style: preserve-3d;
             transform: rotateX(60deg) translateZ(0px);
             animation: gridMove 8s ease-out forwards;
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(6, 1fr);
+                grid-template-rows: repeat(10, 1fr);
+                height: 100vh;
+                transform: rotateX(45deg);
+            }
+        }
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(8, 1fr);
+                height: 100vh;
+                transform: rotateX(45deg);
+            }
         }
         .grid div {
             border: 1px solid black;
@@ -54,7 +71,7 @@
         }
         .text-content {
             position: relative;
-            z-index: 1;
+            z-index: 1; /* Ensure the text stays above the grid */
         }
         .text-side h1 {
             font-size: 2.5rem;
@@ -63,10 +80,19 @@
         .text-side p {
             font-size: 1.2rem;
         }
+        @media (max-width: 480px) {
+            .text-side h1 {
+                font-size: 1.8rem;
+            }
+            .text-side p {
+                font-size: 1rem;
+            }
+        }
         nav {
             position: absolute;
             top: 20px;
             left: 20px;
+            z-index: 2; /* Higher z-index to ensure nav is clickable */
         }
         nav ul {
             list-style: none;
@@ -84,9 +110,9 @@
 <body>
     <nav>
         <ul>
-            <li><a href="/youtube">/youtube</a></li>
-            <li><a href="/github">/github</a></li>
-            <li><a href="/about">/about</a></li>
+            <li><a href="youtube.html">/youtube</a></li>  <!-- Correct path to youtube.html -->
+            <li><a href="github.html">/github</a></li>    <!-- Correct path to github.html -->
+            <li><a href="about.html">/about</a></li>      <!-- Correct path to about.html -->
         </ul>
     </nav>
     <div class="grid-container">
@@ -102,7 +128,7 @@
         <div class="text-side">
             <h1>/skybl0cker</h1>
             <p>flutter developer</p>
-            <p><a href="https://youtube.com/c/skybl0cker">youtube</a> <a href="https://github.com/skybl0cker">github</a></p>
+            <p><a href="https://youtube.com/c/skybl0cker">YouTube</a> <a href="https://github.com/skybl0cker">GitHub</a></p>
         </div>
     </div>
 </body>
