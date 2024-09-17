@@ -91,11 +91,8 @@
         /* Navigation Styling */
         nav {
             position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
+            top: 10px;
+            left: 10px;
             z-index: 2; /* Higher z-index to ensure nav is clickable */
         }
         nav ul {
@@ -117,13 +114,21 @@
             filter: grayscale(100%); /* Grayscale effect */
             margin-right: 15px; /* Space between the logo and the buttons */
         }
+        /* Ensuring the links at the bottom are white */
+        a {
+            color: #f0f0f0;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline; /* Optional: Adds underline on hover */
+        }
     </style>
 </head>
 <body>
     <!-- Add the grayscale logo and /home button -->
     <nav>
         <ul>
-            <li><img class="logo" src="path/to/your/logo-image.png" alt="Skybl0cker Logo"></li> <!-- Logo in the top left corner -->
+            <li><img class="logo" src="logo.png" alt="Skybl0cker Logo"></li> <!-- Logo in the top left corner -->
             <li><a href="index.html">/home</a></li>  <!-- Home Button -->
             <li><a href="youtube.html">/youtube</a></li>  <!-- Youtube Button -->
             <li><a href="github.html">/github</a></li>    <!-- Github Button -->
