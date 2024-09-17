@@ -24,7 +24,7 @@
             width: 100%;
             height: 100vh;
             perspective: 600px;
-            z-index: 0; /* Ensure the grid is behind the text and nav */
+            z-index: 0;
         }
         .grid {
             width: 100%;
@@ -34,7 +34,7 @@
             grid-template-rows: repeat(15, 1fr);
             background: rgba(255, 255, 255, 0.05);
             transform-style: preserve-3d;
-            transform: rotateX(60deg) translateZ(0px);
+            transform: rotateX(60deg) translateY(-150px) translateZ(0px); /* Adjusted grid position */
             animation: gridMove 8s ease-out forwards;
         }
         @media (max-width: 768px) {
@@ -42,7 +42,7 @@
                 grid-template-columns: repeat(6, 1fr);
                 grid-template-rows: repeat(10, 1fr);
                 height: 100vh;
-                transform: rotateX(45deg);
+                transform: rotateX(45deg) translateY(-100px); /* Adjusted for smaller screens */
             }
         }
         @media (max-width: 480px) {
@@ -50,11 +50,11 @@
                 grid-template-columns: repeat(4, 1fr);
                 grid-template-rows: repeat(8, 1fr);
                 height: 100vh;
-                transform: rotateX(45deg);
+                transform: rotateX(45deg) translateY(-80px); /* Adjusted for mobile */
             }
         }
         .grid div {
-            border: 1px solid black;
+            border: 1px solid #444; /* More prominent grid lines */
             background: rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
@@ -71,7 +71,7 @@
         }
         .text-content {
             position: relative;
-            z-index: 1; /* Ensure the text stays above the grid */
+            z-index: 1;
         }
         .text-side h1 {
             font-size: 2.5rem;
@@ -93,7 +93,7 @@
             position: absolute;
             top: 10px;
             left: 10px;
-            z-index: 2; /* Higher z-index to ensure nav is clickable */
+            z-index: 2;
         }
         nav ul {
             list-style: none;
@@ -110,17 +110,17 @@
         }
         /* Logo Styling */
         .logo {
-            width: 80px;
-            filter: grayscale(100%); /* Grayscale effect */
-            margin-right: 15px; /* Space between the logo and the buttons */
+            width: 60px;
+            filter: grayscale(100%);
+            margin-right: 15px;
         }
-        /* Ensuring the links at the bottom are white */
+        /* Ensure links at the bottom are white */
         a {
             color: #f0f0f0;
             text-decoration: none;
         }
         a:hover {
-            text-decoration: underline; /* Optional: Adds underline on hover */
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -128,11 +128,11 @@
     <!-- Add the grayscale logo and /home button -->
     <nav>
         <ul>
-            <li><img class="logo" src="logo.png" alt="Skybl0cker Logo"></li> <!-- Logo in the top left corner -->
-            <li><a href="index.html">/home</a></li>  <!-- Home Button -->
-            <li><a href="youtube.html">/youtube</a></li>  <!-- Youtube Button -->
-            <li><a href="github.html">/github</a></li>    <!-- Github Button -->
-            <li><a href="about.html">/about</a></li>      <!-- About Button -->
+            <li><img class="logo" src="logo.png" alt="Skybl0cker Logo"></li>
+            <li><a href="index.html">/home</a></li>
+            <li><a href="youtube.html">/youtube</a></li>
+            <li><a href="github.html">/github</a></li>
+            <li><a href="about.html">/about</a></li>
         </ul>
     </nav>
 
