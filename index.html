@@ -36,22 +36,6 @@
             transform: rotateX(60deg) translateZ(0px);
             animation: gridMove 8s ease-out forwards;
         }
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: repeat(6, 1fr);
-                grid-template-rows: repeat(10, 1fr);
-                height: 100vh;
-                transform: rotateX(45deg);
-            }
-        }
-        @media (max-width: 480px) {
-            .grid {
-                grid-template-columns: repeat(4, 1fr);
-                grid-template-rows: repeat(8, 1fr);
-                height: 100vh;
-                transform: rotateX(45deg);
-            }
-        }
         .grid div {
             border: 1px solid black;
             background: rgba(0, 0, 0, 0.1);
@@ -79,14 +63,6 @@
         .text-side p {
             font-size: 1.2rem;
         }
-        @media (max-width: 480px) {
-            .text-side h1 {
-                font-size: 1.8rem;
-            }
-            .text-side p {
-                font-size: 1rem;
-            }
-        }
         nav {
             position: absolute;
             top: 20px;
@@ -108,9 +84,9 @@
 <body>
     <nav>
         <ul>
-            <li><a href="youtube.html">/youtube</a></li>  <!-- Correct path to youtube.html -->
-            <li><a href="github.html">/github</a></li>    <!-- Correct path to github.html -->
-            <li><a href="about.html">/about</a></li>      <!-- Correct path to about.html -->
+            <li><a href="/youtube">/youtube</a></li>
+            <li><a href="/github">/github</a></li>
+            <li><a href="/about">/about</a></li>
         </ul>
     </nav>
     <div class="grid-container">
@@ -126,7 +102,7 @@
         <div class="text-side">
             <h1>/skybl0cker</h1>
             <p>flutter developer</p>
-            <p><a href="https://youtube.com/c/skybl0cker">YouTube</a> <a href="https://github.com/skybl0cker">GitHub</a></p>
+            <p><a href="https://youtube.com/c/skybl0cker">youtube</a> <a href="https://github.com/skybl0cker">github</a></p>
         </div>
     </div>
 </body>
