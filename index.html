@@ -4,50 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Skybl0cker's YouTube & GitHub</title>
+    <title>Skybl0cker's Website</title>
     <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(45deg, #1b1b1b, #2d2d2d, #1b1b1b, #2d2d2d);
+            background-size: 400% 400%;
+            animation: backgroundMove 10s ease infinite;
+            color: #f0f0f0;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        @keyframes backgroundMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+        }
+        .image-side img {
+            max-width: 300px;
+            border-radius: 10px;
+        }
+        .text-side h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .text-side p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        a {
+            color: #f0f0f0;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        nav {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        nav ul {
+            list-style: none;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+        .image-side, .text-side {
+            flex-basis: 50%;
+        }
+    </style>
 </head>
 <body>
-    <nav class="container-fluid">
+    <nav>
         <ul>
-            <img class="image-corner" src="https://ibb.co/GJWjSrC">
-        </ul>
-        <ul>
-            <li><a href="#videos">Videos</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact" role="button">Contact</a></li>
+            <li><a href="/youtube">/youtube</a></li>
+            <li><a href="/github">/github</a></li>
+            <li><a href="/about">/about</a></li>
         </ul>
     </nav>
-    <main class="container">
-        <div class="grid">
-            <section>
-                <hgroup>
-                    <h2>Welcome to my website.</h2>
-                    <h3>Highlighting My YouTube Channel and GitHub Projects</h3>
-                </hgroup>
-                <p>Here you'll find my latest YouTube videos and current coding projects hosted on GitHub.</p>
-                <figure>
-                    <figcaption><a href="https://youtube.com/c/skyblocker" target="_blank">Visit my YouTube channel</a></figcaption>
-                </figure>
-                <h3>Latest YouTube Videos</h3>
-                <p>Check out some of my recent videos:</p>
-                <ul>
-                    <li><a href="https://www.youtube.com/watch?v=vRT_-WQhfhQ&t=64s">Windows 98 Restoration Project: Part 1</a></li>
-                    <li><a href="#">Coming soon...</a></li>
-                    <li><a href="#">Coming soon...</a></li>
-                </ul>
-                <h3 id="projects">Current Projects</h3>
-                <p>Explore my GitHub projects:</p>
-                <ul>
-                    <li><a href="https://github.com/HVA-FRC-3824/ScoutinFRC" target="_blank">ScoutinFRC</a></li>
-                    <li><a href="https://github.com/HVA-FRC-3824/ScoutingFramework" target="_blank">Flutter Scouting Framework</a></li>
-                    <li><a href="https://github.com/skybl0cker/skybl0cker.github.io" target="_blank">My Website</a></li>
-                </ul>
-            </section>
+    <div class="container">
+        <div class="image-side">
+            <img src="https://source.unsplash.com/featured/?coding" alt="Developer at work">
         </div>
-    </main>
-    <footer class="container">
-        <small><a href="https://github.com/skybl0cker" target="_blank">GitHub</a> • <a href="https://youtube.com/c/skyblocker" target="_blank">YouTube</a></small>
-    </footer>
+        <div class="text-side">
+            <h1>/skybl0cker</h1>
+            <p>flutter developer</p>
+            <p><a href="https://youtube.com/c/skybl0cker">YouTube</a> <a href="https://github.com/skybl0cker">GitHub</a></p>
+        </div>
+    </div>
 </body>
 </html>
