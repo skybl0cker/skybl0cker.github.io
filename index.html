@@ -88,44 +88,49 @@
                 font-size: 1rem;
             }
         }
+        /* Navigation Styling */
         nav {
             position: absolute;
             top: 20px;
-            left: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
             z-index: 2; /* Higher z-index to ensure nav is clickable */
         }
         nav ul {
             list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
         nav ul li {
             display: inline;
-            margin-right: 15px;
         }
-        a {
+        nav ul li a {
             color: #f0f0f0;
             text-decoration: none;
         }
-        /* Add the grayscale logo */
+        /* Logo Styling */
         .logo {
-            position: absolute;
-            top: 10px;
-            left: 10px;
             width: 60px;
-            filter: grayscale(100%); /* Make it grayscale */
+            filter: grayscale(100%); /* Grayscale effect */
+            margin-right: 15px; /* Space between the logo and the buttons */
         }
     </style>
 </head>
 <body>
-    <!-- Add the grayscale logo -->
-    <img class="logo" src="logo.png" alt="Skybl0cker Logo">
-
+    <!-- Add the grayscale logo and /home button -->
     <nav>
         <ul>
-            <li><a href="youtube.html">/youtube</a></li>  <!-- Correct path to youtube.html -->
-            <li><a href="github.html">/github</a></li>    <!-- Correct path to github.html -->
-            <li><a href="about.html">/about</a></li>      <!-- Correct path to about.html -->
+            <li><img class="logo" src="path/to/your/logo-image.png" alt="Skybl0cker Logo"></li> <!-- Logo in the top left corner -->
+            <li><a href="index.html">/home</a></li>  <!-- Home Button -->
+            <li><a href="youtube.html">/youtube</a></li>  <!-- Youtube Button -->
+            <li><a href="github.html">/github</a></li>    <!-- Github Button -->
+            <li><a href="about.html">/about</a></li>      <!-- About Button -->
         </ul>
     </nav>
+
     <div class="grid-container">
         <div class="grid">
             <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
@@ -135,6 +140,7 @@
             <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
         </div>
     </div>
+
     <div class="text-content">
         <div class="text-side">
             <h1>/skybl0cker</h1>
