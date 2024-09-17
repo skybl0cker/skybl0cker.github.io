@@ -3,35 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>skybl0ckers fun website of fun items</title>
-    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Skybl0cker's YouTube & GitHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Welcome to my website of fun times and fun things</h1>
-        <nav>
-            <ul>
-                <li><a href="#youtube">YouTube</a></li>
-                <li><a href="#github">GitHub</a></li>
-                <li><a href="#aboutme">About me!</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="youtube">
-            <h2>YouTubeeeee</h2>
-            <p>Welcome to my YouTube channel where I share videos about stupid shit</p>
-            <p>Check out my crap videos:</p>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/VODT2p1NVv8?si=HQoKSrun3r7dI0Fq" frameborder="0" allowfullscreen></iframe>
-        </section>
-        <section id="github">
-            <h2>GitHub</h2>
-            <p>Explore some random stuff I coded at 3 in the morning</p>
-            <p><a href="https://github.com/skybl0cker">GitHub</a></p>
-        </section>
+    <nav class="container-fluid">
+        <ul>
+            <img class="image-corner" src="https://ibb.co/GJWjSrC">
+        </ul>
+        <ul>
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact" role="button">Contact</a></li>
+        </ul>
+    </nav>
+    <main class="container">
+        <div class="grid">
+            <section>
+                <hgroup>
+                    <h2>Welcome to my website.</h2>
+                    <h3>Highlighting My YouTube Channel and GitHub Projects</h3>
+                </hgroup>
+                <p>Here you'll find my latest YouTube videos and current coding projects hosted on GitHub.</p>
+                <figure>
+                    <figcaption><a href="https://youtube.com/c/skyblocker" target="_blank">Visit my YouTube channel</a></figcaption>
+                </figure>
+                <h3>Latest YouTube Videos</h3>
+                <p>Check out some of my recent videos:</p>
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=vRT_-WQhfhQ&t=64s">Windows 98 Restoration Project: Part 1</a></li>
+                    <li><a href="#">Coming soon...</a></li>
+                    <li><a href="#">Coming soon...</a></li>
+                </ul>
+                <h3 id="projects">Current Projects</h3>
+                <p>Explore my GitHub projects:</p>
+                <ul>
+                    <li><a href="https://github.com/HVA-FRC-3824/ScoutinFRC" target="_blank">ScoutinFRC</a></li>
+                    <li><a href="https://github.com/HVA-FRC-3824/ScoutingFramework" target="_blank">Flutter Scouting Framework</a></li>
+                    <li><a href="https://github.com/skybl0cker/skybl0cker.github.io" target="_blank">My Website</a></li>
+                </ul>
+            </section>
+        </div>
     </main>
-    
-    <footer>
+    <footer class="container">
+        <small><a href="https://github.com/skybl0cker" target="_blank">GitHub</a> • <a href="https://youtube.com/c/skyblocker" target="_blank">YouTube</a></small>
     </footer>
 </body>
 </html>
