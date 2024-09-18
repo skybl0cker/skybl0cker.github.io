@@ -36,26 +36,30 @@
         }
 
         .text-side h1 {
-            font-family: 'Courier New', Courier, monospace; /* Sans-serif font for /skybl0cker */
-            font-size: 4rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 3rem; /* Slightly smaller than before */
             font-weight: bold;
             margin-bottom: 0.5rem;
         }
 
         .text-side p {
-            font-family: 'Courier New', Courier, monospace; /* Monospace font for subtext */
-            font-size: 1.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.3rem; /* Slightly smaller than before */
             margin: 0.5rem 0;
             font-weight: bold;
         }
 
         @media (max-width: 480px) {
             .text-side h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem; /* Adjusted size for mobile */
             }
 
             .text-side p {
                 font-size: 1rem;
+            }
+
+            .logo {
+                display: none; /* Hide logo on mobile screens */
             }
         }
 
