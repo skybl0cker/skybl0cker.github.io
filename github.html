@@ -4,71 +4,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Skybl0cker's GitHub Page</title>
+    <title>Skybl0cker's GitHub</title>
     <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #1b1b1b;
+            background-color: #2c2c2c;
             color: #f0f0f0;
             font-family: 'Courier New', Courier, monospace;
-            text-align: center;
             margin: 0;
-            padding-top: 50px;
-        }
-        nav {
-            background-color: #1b1b1b;
             padding: 20px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            text-align: left;
+            text-align: center;
         }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
         }
-        nav ul li {
-            display: inline;
-            margin-right: 15px;
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
         }
+
+        .card {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin-top: 10px;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #bbbbbb;
+        }
+
+        .badges {
+            margin-top: 10px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #444;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: #fff;
+            margin-right: 5px;
+        }
+
         a {
             color: #f0f0f0;
             text-decoration: none;
         }
-        .container {
-            padding: 100px 20px 20px 20px; /* Fix for title being cut off */
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation Styling */
+        nav {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
+
     <nav>
         <ul>
-            <li><a href="/index">/home</a></li>
-            <li><a href="/youtube">/youtube</a></li>
-            <li><a href="/github">/github</a></li>
-            <li><a href="/about">/about</a></li>
+            <li><a href="index.html">/home</a></li>
+            <li><a href="youtube.html">/youtube</a></li>
+            <li><a href="about.html">/about</a></li>
         </ul>
     </nav>
+
     <div class="container">
-        <h1>Welcome to Skybl0cker's GitHub Page</h1>
-        <p>Explore my coding projects on GitHub:</p>
-        <ul>
-            <li>
-                <strong><a href="https://github.com/HVA-FRC-3824/ScoutinFRC" target="_blank">ScoutinFRC</a></strong> - (Dart, Futter)
-                <p>A scouting application designed for FIRST Robotics Competition. It helps teams collect and analyze data on competing robots during events.</p>
-            </li>
-            <li>
-                <strong><a href="https://github.com/HVA-FRC-3824/ScoutingFramework" target="_blank">Flutter Scouting Framework</a></strong> - (Dart, Flutter)
-                <p>A mobile-first framework built using Flutter for scouting purposes in robotics competitions, offering real-time data entry and analysis capabilities.</p>
-            </li>
-            <li>
-                <strong><a href="https://github.com/skybl0cker/skybl0cker.github.io" target="_blank">My Website</a></strong> - (HTML, CSS, JavaScript)
-                <p>This website showcases my projects, coding skills, and links to my YouTube channel and GitHub repositories.</p>
-            </li>
-        </ul>
+        <h1>My GitHub Projects</h1>
+        <div class="card-grid">
+            <!-- Project 1 -->
+            <div class="card">
+                <h3>ScoutinFRC</h3>
+                <p>A scouting application designed for FIRST Robotics Competition.</p>
+                <div class="badges">
+                    <span class="badge">Dart</span>
+                    <span class="badge">Flutter</span>
+                </div>
+                <a href="https://github.com/HVA-FRC-3824/ScoutinFRC" target="_blank">View Project</a>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="card">
+                <h3>Flutter Scouting Framework</h3>
+                <p>A mobile-first framework built using Flutter for scouting purposes.</p>
+                <div class="badges">
+                    <span class="badge">Dart</span>
+                    <span class="badge">Flutter</span>
+                </div>
+                <a href="https://github.com/HVA-FRC-3824/ScoutingFramework" target="_blank">View Project</a>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="card">
+                <h3>My Website</h3>
+                <p>This website showcases my projects and coding skills.</p>
+                <div class="badges">
+                    <span class="badge">HTML</span>
+                    <span class="badge">CSS</span>
+                    <span class="badge">JavaScript</span>
+                </div>
+                <a href="https://github.com/skybl0cker/skybl0cker.github.io" target="_blank">View Project</a>
+            </div>
+        </div>
     </div>
+
 </body>
 </html>
