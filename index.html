@@ -60,9 +60,10 @@
             margin-top: 20px;
         }
 
+        /* Ensure all icons maintain their aspect ratio */
         .social-icons a img {
-            width: 40px;
-            height: 40px;
+            width: 50px; /* Set uniform width for all icons */
+            height: auto; /* Maintain aspect ratio */
             filter: grayscale(100%); /* Set icons to grayscale */
             transition: all 0.3s ease; /* Smooth hover transition for both filter and scale */
         }
@@ -71,12 +72,6 @@
         .social-icons a img:hover {
             filter: none; /* Remove grayscale on hover */
             transform: scale(1.2); /* Slight zoom on hover */
-        }
-
-        /* Ensure YouTube icon maintains aspect ratio */
-        .social-icons a img.youtube-icon {
-            width: 50px;
-            height: auto;
         }
 
         /* Responsive adjustments */
@@ -94,8 +89,7 @@
             }
 
             .social-icons a img {
-                width: 30px;
-                height: 30px; /* Smaller icons on mobile */
+                width: 40px; /* Smaller icons on mobile */
             }
         }
 
@@ -153,7 +147,7 @@
             <div class="social-icons">
                 <!-- YouTube -->
                 <a href="https://youtube.com/c/skyblocker" target="_blank">
-                    <img class="youtube-icon" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="YouTube">
                 </a>
 
                 <!-- GitHub -->
@@ -168,7 +162,7 @@
 
                 <!-- Discord -->
                 <a href="https://discord.com" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Discord_Logo_full.svg" alt="Discord">
+                    <img src="https://logos-world.net/wp-content/uploads/2020/12/Discord-Logo.png" alt="Discord">
                 </a>
             </div>
         </div>
