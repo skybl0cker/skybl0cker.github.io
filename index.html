@@ -18,76 +18,82 @@
             height: 100vh;
             margin: 0;
             overflow: hidden;
+            position: relative;
         }
-        .grid-container {
+
+        /* Wave animation */
+        .waves {
             position: absolute;
             width: 100%;
-            height: 100vh;
-            perspective: 600px;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: #2c2c2c;
+            overflow: hidden;
+        }
+
+        .wave {
+            position: absolute;
+            width: 200%;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 100%;
+            animation: moveWaves 10s linear infinite;
+            bottom: 0;
             z-index: 0;
         }
-        .grid {
-            width: 100%;
-            height: 100vh; /* Adjusted to fit the screen */
-            display: grid;
-            grid-template-columns: repeat(10, 1fr);
-            grid-template-rows: repeat(15, 1fr);
-            background: rgba(255, 255, 255, 0.05);
-            transform-style: preserve-3d;
-            transform: rotateX(65deg) translateY(-50px); /* Adjusted grid position */
-            animation: gridMove 10s ease-out forwards;
+
+        .wave:nth-child(1) {
+            animation-delay: 0s;
+            opacity: 0.7;
         }
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: repeat(6, 1fr);
-                grid-template-rows: repeat(10, 1fr);
-                height: 100vh;
-                transform: rotateX(45deg) translateY(-30px); /* Adjusted for smaller screens */
-            }
+
+        .wave:nth-child(2) {
+            animation-delay: 5s;
+            opacity: 0.5;
         }
-        @media (max-width: 480px) {
-            .grid {
-                grid-template-columns: repeat(4, 1fr);
-                grid-template-rows: repeat(8, 1fr);
-                height: 100vh;
-                transform: rotateX(45deg) translateY(-20px); /* Adjusted for mobile */
-            }
+
+        .wave:nth-child(3) {
+            animation-delay: 10s;
+            opacity: 0.3;
         }
-        .grid div {
-            border: 1px solid #444; /* Darker grid lines */
-            background: rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        .grid div:hover {
-            transform: translateZ(30px);
-        }
-        @keyframes gridMove {
+
+        @keyframes moveWaves {
             0% {
-                transform: rotateX(65deg) translateZ(400px);
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(50%) translateY(-30px);
             }
             100% {
-                transform: rotateX(65deg) translateZ(-50px); /* Keep it closer */
+                transform: translateX(-50%) translateY(0);
             }
         }
+
         .text-content {
             position: relative;
             z-index: 1;
         }
+
         .text-side h1 {
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
         }
+
         .text-side p {
             font-size: 1.2rem;
         }
+
         @media (max-width: 480px) {
             .text-side h1 {
                 font-size: 1.8rem;
             }
+
             .text-side p {
                 font-size: 1rem;
             }
         }
+
         /* Navigation Styling */
         nav {
             position: absolute;
@@ -95,36 +101,43 @@
             left: 10px;
             z-index: 2;
         }
+
         nav ul {
             list-style: none;
             display: flex;
             align-items: center;
             gap: 15px;
         }
+
         nav ul li {
             display: inline;
         }
+
         nav ul li a {
             color: #f0f0f0;
             text-decoration: none;
         }
+
         /* Logo Styling */
         .logo {
             width: 60px;
             filter: grayscale(100%);
             margin-right: 15px;
         }
+
         /* Ensure links at the bottom are white */
         a {
             color: #f0f0f0;
             text-decoration: none;
         }
+
         a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
+
     <!-- Add the grayscale logo and /home button -->
     <nav>
         <ul>
@@ -136,21 +149,18 @@
         </ul>
     </nav>
 
-    <div class="grid-container">
-        <div class="grid">
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-        </div>
+    <!-- Wave animation container -->
+    <div class="waves">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
     </div>
 
     <div class="text-content">
         <div class="text-side">
             <h1>/skybl0cker</h1>
             <p>flutter developer</p>
-            <p><a href="https://youtube.com/c/skyblocker">YouTube</a> <a href="https://github.com/skybl0cker">GitHub</a></p>
+            <p><a href="https://youtube.com/c/skybl0cker">YouTube</a> <a href="https://github.com/skybl0cker">GitHub</a></p>
         </div>
     </div>
 </body>
