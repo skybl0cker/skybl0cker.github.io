@@ -10,7 +10,7 @@
     <style>
         body {
             background-color: #2c2c2c;
-            color: #ffffff; /* Set all text to white */
+            color: #f0f0f0;
             font-family: 'Courier New', Courier, monospace;
             text-align: center;
             display: flex;
@@ -41,7 +41,7 @@
             font-size: 3rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
-            color: #ffffff; /* Ensure header is white */
+            color: #ffffff;
         }
 
         .text-side p {
@@ -49,9 +49,29 @@
             font-size: 1.3rem;
             margin: 0.5rem 0;
             font-weight: bold;
-            color: #ffffff; /* Ensure paragraphs are white */
+            color: #ffffff;
         }
 
+        /* Icon Styling */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a img {
+            width: 40px;
+            height: 40px;
+            filter: grayscale(100%); /* Set icons to grayscale */
+            transition: filter 0.3s ease; /* Smooth hover transition */
+        }
+
+        .social-icons a img:hover {
+            filter: none; /* Remove grayscale on hover */
+        }
+
+        /* Responsive adjustments */
         @media (max-width: 480px) {
             .text-side h1 {
                 font-size: 2.2rem;
@@ -63,6 +83,11 @@
 
             .logo {
                 display: none; /* Hide logo on mobile screens */
+            }
+
+            .social-icons a img {
+                width: 30px;
+                height: 30px; /* Smaller icons on mobile */
             }
         }
 
@@ -81,7 +106,7 @@
         }
 
         nav ul li a {
-            color: #ffffff; /* Ensure nav links are white */
+            color: #f0f0f0;
             text-decoration: none;
             font-weight: bold;
         }
@@ -92,21 +117,11 @@
             filter: grayscale(100%);
             margin-right: 15px;
         }
-
-        /* Ensure links at the bottom are white */
-        a {
-            color: #ffffff; /* Ensure all links are white */
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
 
-    <!-- Add the same nav bar as YouTube and GitHub pages -->
+    <!-- Navigation Bar -->
     <nav>
         <ul>
             <li><img class="logo" src="logo.png" alt="Skybl0cker Logo"></li>
@@ -120,11 +135,34 @@
     <!-- Particle animation container -->
     <div id="particles-js"></div>
 
+    <!-- Main Content -->
     <div class="text-content">
         <div class="text-side">
             <h1>/skybl0cker</h1>
-            <p>hobbyist programmer</p>
-            <p><a href="https://youtube.com/c/skyblocker">YouTube</a> <a href="https://github.com/skybl0cker">GitHub</a></p>
+            <p>flutter developer</p>
+
+            <!-- Social Icons -->
+            <div class="social-icons">
+                <!-- YouTube -->
+                <a href="https://youtube.com/c/skyblocker" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube">
+                </a>
+
+                <!-- GitHub -->
+                <a href="https://github.com/skybl0cker" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://instagram.com" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                </a>
+
+                <!-- Discord -->
+                <a href="https://discord.com" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Discord_logo.svg" alt="Discord">
+                </a>
+            </div>
         </div>
     </div>
 
