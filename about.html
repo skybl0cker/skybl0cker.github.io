@@ -52,15 +52,14 @@
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 50px 20px;
-            background: linear-gradient(135deg, #2c2c2c, #1e1e1e); /* Subtle gradient */
+            padding: 30px 20px;
             border-bottom: 1px solid #444;
         }
 
         .hero h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
-            color: #00d9ff; /* Light blue accent */
+            color: #f0f0f0; /* Light text */
         }
 
         .hero p {
@@ -70,13 +69,13 @@
             color: #bbbbbb; /* Lighter text */
         }
 
-        /* Skills & Hobbies Section */
-        .info-sections {
+        /* Info Section */
+        .info-section {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
+            flex-direction: column;
+            align-items: center;
             padding: 40px 20px;
+            gap: 30px;
         }
 
         /* Info Cards Styling */
@@ -95,7 +94,7 @@
 
         .info-card h3 {
             font-size: 1.5rem;
-            color: #00d9ff; /* Accent color */
+            color: #f0f0f0;
             margin-bottom: 15px;
         }
 
@@ -104,75 +103,33 @@
             color: #bbbbbb; /* Light gray */
         }
 
-        /* Badge Styling */
-        .badges {
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .badge {
-            background-color: #444;
-            padding: 5px 10px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            color: #fff;
-        }
-
-        /* Skills Section Container */
-        .skills-container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
-            text-align: left;
+        /* Skills Section */
+        .skills-section {
+            width: 100%;
+            max-width: 800px;
             background: #1e1e1e; /* Dark background for skills */
             border-radius: 10px;
+            padding: 30px 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: left;
         }
 
-        .skills-container h2 {
+        .skills-section h2 {
             font-size: 2rem;
-            color: #00d9ff;
+            color: #f0f0f0;
             margin-bottom: 20px;
-        }
-
-        /* Skill Summary */
-        .skill-summary {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
             text-align: center;
         }
 
-        .skill-summary-item {
-            background: #444;
-            border-radius: 10px;
-            padding: 10px 20px;
-            margin: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            flex: 1;
-            min-width: 120px;
-        }
-
-        .skill-summary-item h4 {
-            font-size: 1.2rem;
-            color: #f0f0f0;
-            margin-bottom: 5px;
-        }
-
-        .skill-summary-item span {
-            font-size: 1rem;
-            color: #f0f0f0;
+        .skills-section .skill-bar-container {
+            margin-bottom: 15px;
         }
 
         /* Skill Bar Container */
         .skill-bar {
-            margin-bottom: 20px;
             display: flex;
             align-items: center; /* Center the star icon vertically */
+            margin-bottom: 10px;
         }
 
         /* Skill Bar Title */
@@ -193,13 +150,13 @@
 
         /* Progress Bar */
         .progress-bar {
-            background-color: #0077cc; /* Blue color */
+            background-color: #f0f0f0; /* Gray color */
             height: 20px;
             border-radius: 25px;
             width: 0;
             max-width: 100%;
             text-align: center;
-            color: #fff;
+            color: #2c2c2c;
             font-size: 0.9rem;
             transition: width 1s ease-in-out; /* Smooth transition */
         }
@@ -220,18 +177,32 @@
 
         /* Responsive Styling */
         @media (max-width: 768px) {
-            h1 {
+            .hero h1 {
                 font-size: 2rem;
             }
-            h3 {
-                font-size: 1.5rem;
-            }
-            p {
+
+            .hero p {
                 font-size: 1rem;
             }
+
+            .info-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-card {
+                width: 100%;
+                max-width: 500px;
+            }
+
+            .skills-section {
+                width: 90%;
+            }
+
             .skill-bar h4 {
                 font-size: 1rem;
             }
+
             .star-icon {
                 font-size: 1rem;
             }
@@ -257,20 +228,89 @@
         <p>Hello! I'm <strong>Skybl0cker</strong>, a high-school student passionate about coding and technology. I have experience with various programming languages including <strong>Dart/Flutter, Java, and JavaScript</strong>, and I'm currently learning <strong>Python, C++, and C#</strong>.</p>
     </div>
 
-    <!-- Skills & Hobbies Section -->
-    <div class="info-sections">
-        <!-- Skills Card -->
+    <!-- Skills Section -->
+    <div class="skills-section">
+        <h2>Programming Language Proficiency</h2>
+
+        <!-- Skill 1: Dart/Flutter -->
+        <div class="skill-bar-container">
+            <div class="skill-bar">
+                <h4>Dart/Flutter</h4>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar progress-bar-fill" style="--progress-width: 100%;">100%</div>
+                </div>
+                <div class="star-icon">⭐</div> <!-- Star icon for 100% skills -->
+            </div>
+        </div>
+
+        <!-- Skill 2: Java -->
+        <div class="skill-bar-container">
+            <div class="skill-bar">
+                <h4>Java</h4>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar progress-bar-fill" style="--progress-width: 85%;">85%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skill 3: JavaScript -->
+        <div class="skill-bar-container">
+            <div class="skill-bar">
+                <h4>JavaScript</h4>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar progress-bar-fill" style="--progress-width: 70%;">70%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skill 4: HTML/CSS -->
+        <div class="skill-bar-container">
+            <div class="skill-bar">
+                <h4>HTML/CSS</h4>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar progress-bar-fill" style="--progress-width: 100%;">100%</div>
+                </div>
+                <div class="star-icon">⭐</div> <!-- Star icon for 100% skills -->
+            </div>
+        </div>
+
+        <!-- Skill 5: Python (Learning) -->
+        <div class="skill-bar-container">
+            <div class="skill-bar">
+                <h4>Python (Learning)</h4>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar progress-bar-fill" style="--progress-width: 40%;">40%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skill 6: C# (Learning) -->
+        <div class="skill-bar-container">
+            <div class="skill-bar">
+                <h4>C# (Learning)</h4>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar progress-bar-fill" style="--progress-width: 20%;">20%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skill 7: C++ (Learning) -->
+        <div class="skill-bar-container">
+            <div class="skill-bar">
+                <h4>C++ (Learning)</h4>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar progress-bar-fill" style="--progress-width: 10%;">10%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Section -->
+    <div class="info-section">
+        <!-- Coding Skills Card -->
         <div class="info-card">
             <h3>Coding Skills</h3>
-            <p>I have experience in the following languages and technologies:</p>
-            <div class="badges">
-                <span class="badge">Dart</span>
-                <span class="badge">Flutter</span>
-                <span class="badge">Java</span>
-                <span class="badge">JavaScript</span>
-                <span class="badge">HTML</span>
-                <span class="badge">CSS</span>
-            </div>
+            <p>I have experience in various programming languages and technologies.</p>
             <p>Currently learning:</p>
             <div class="badges">
                 <span class="badge">Python</span>
@@ -289,69 +329,6 @@
         <div class="info-card">
             <h3>Hobbies & Interests</h3>
             <p>Aside from coding and robotics, I enjoy modding consoles, restoring vintage computers, and collecting tech of all kinds.</p>
-        </div>
-    </div>
-
-    <!-- Skills Section -->
-    <div class="skills-container">
-        <h2>Programming Language Proficiency</h2>
-
-        <!-- Skill 1: Dart/Flutter -->
-        <div class="skill-bar">
-            <h4>Dart/Flutter</h4>
-            <div class="progress-bar-bg">
-                <div class="progress-bar progress-bar-fill" style="--progress-width: 100%;">100%</div>
-            </div>
-            <div class="star-icon">⭐</div> <!-- Star icon for 100% skills -->
-        </div>
-
-        <!-- Skill 2: Java -->
-        <div class="skill-bar">
-            <h4>Java</h4>
-            <div class="progress-bar-bg">
-                <div class="progress-bar progress-bar-fill" style="--progress-width: 85%;">85%</div>
-            </div>
-        </div>
-
-        <!-- Skill 3: JavaScript -->
-        <div class="skill-bar">
-            <h4>JavaScript</h4>
-            <div class="progress-bar-bg">
-                <div class="progress-bar progress-bar-fill" style="--progress-width: 70%;">70%</div>
-            </div>
-        </div>
-
-        <!-- Skill 4: HTML/CSS -->
-        <div class="skill-bar">
-            <h4>HTML/CSS</h4>
-            <div class="progress-bar-bg">
-                <div class="progress-bar progress-bar-fill" style="--progress-width: 100%;">100%</div>
-            </div>
-            <div class="star-icon">⭐</div> <!-- Star icon for 100% skills -->
-        </div>
-
-        <!-- Skill 5: Python (Learning) -->
-        <div class="skill-bar">
-            <h4>Python (Learning)</h4>
-            <div class="progress-bar-bg">
-                <div class="progress-bar progress-bar-fill" style="--progress-width: 40%;">40%</div>
-            </div>
-        </div>
-
-        <!-- Skill 6: C# (Learning) -->
-        <div class="skill-bar">
-            <h4>C# (Learning)</h4>
-            <div class="progress-bar-bg">
-                <div class="progress-bar progress-bar-fill" style="--progress-width: 20%;">20%</div>
-            </div>
-        </div>
-
-        <!-- Skill 7: C++ (Learning) -->
-        <div class="skill-bar">
-            <h4>C++ (Learning)</h4>
-            <div class="progress-bar-bg">
-                <div class="progress-bar progress-bar-fill" style="--progress-width: 10%;">10%</div>
-            </div>
         </div>
     </div>
 
