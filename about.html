@@ -6,94 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>About | Skybl0cker</title>
     <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo.png">
     <style>
-        body {
-            background-color: #2c2c2c;
-            color: #f0f0f0;
-            font-family: 'Courier New', Courier, monospace;
-            text-align: center;
+        /* General Styling */
+        body, html {
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace; /* Monospace font */
+            background-color: #2c2c2c; /* Dark background */
+            color: #f0f0f0; /* Light text */
+            overflow-x: hidden;
         }
 
-        /* Add padding and style the cards */
-        .container {
-            padding: 20px;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: #1e1e1e;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Ensure all images are 300x150 */
-        .card img {
-            width: 300px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .card h3 {
-            margin-top: 10px;
-            font-size: 1.5rem;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #bbbbbb;
-        }
-
-        /* Badge Styling */
-        .badges {
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 10px; /* Add space between badges */
-            flex-wrap: wrap; /* Ensure badges wrap to the next line on smaller screens */
-        }
-
-        .badge {
-            display: inline-block;
-            background-color: #444;
-            padding: 5px 10px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            color: #fff;
-        }
-
-        a {
-            color: #f0f0f0;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Navigation Styling */
+        /* Navigation Bar Styling */
         nav {
-            text-align: left;
-            margin-bottom: 20px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1e1e1e; /* Slightly darker than background */
         }
 
         nav ul {
@@ -106,26 +37,105 @@
             color: #f0f0f0;
             text-decoration: none;
             font-weight: bold;
+            font-size: 1rem;
         }
 
-        /* Logo Styling */
+        nav ul li a:hover {
+            color: #00d9ff; /* Hover color */
+        }
+
         .logo {
             width: 60px;
             filter: grayscale(100%);
-            margin-right: 15px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #2c2c2c, #1e1e1e); /* Subtle gradient */
+            border-bottom: 1px solid #444;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #00d9ff; /* Light blue accent */
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #bbbbbb; /* Lighter text */
+        }
+
+        /* Skills & Hobbies Section */
+        .info-sections {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 40px 20px;
+        }
+
+        /* Info Cards Styling */
+        .info-card {
+            background: #1e1e1e; /* Darker gray for cards */
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            color: #00d9ff; /* Accent color */
+            margin-bottom: 15px;
+        }
+
+        .info-card p {
+            font-size: 1rem;
+            color: #bbbbbb; /* Light gray */
+        }
+
+        /* Badge Styling */
+        .badges {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background-color: #444;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: #fff;
         }
 
         /* Skills Section Container */
         .skills-container {
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 1000px;
+            margin: 40px auto;
             padding: 20px;
             text-align: left;
+            background: #1e1e1e; /* Dark background for skills */
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
-        h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+        .skills-container h2 {
+            font-size: 2rem;
+            color: #00d9ff;
+            margin-bottom: 20px;
         }
 
         /* Skill Summary */
@@ -138,7 +148,7 @@
         }
 
         .skill-summary-item {
-            background: #1e1e1e;
+            background: #444;
             border-radius: 10px;
             padding: 10px 20px;
             margin: 10px;
@@ -232,64 +242,59 @@
 
     <!-- Navigation Bar -->
     <nav>
+        <img class="logo" src="logo.png" alt="Skybl0cker Logo">
         <ul>
             <li><a href="index.html">/home</a></li>
             <li><a href="youtube.html">/youtube</a></li>
             <li><a href="github.html">/github</a></li>
+            <li><a href="about.html">/about</a></li>
         </ul>
     </nav>
 
-
-    <!-- Main Content -->
-    <div class="container">
+    <!-- Hero Section -->
+    <div class="hero">
         <h1>About Me</h1>
-        
-        <!-- Cards Layout -->
-        <div class="card-grid">
-            <!-- Card 1: Coding Skills -->
-            <div class="card">
-                <img src="coding.jpg" alt="Coding Skills"> <!-- Replace with your image -->
-                <h3>High-School Hobbyist Coder</h3>
-                <p>I am a high-school student passionate about coding and technology. I love exploring different programming languages and experimenting with new projects.</p>
-                <p>I have experience in:</p>
-                <div class="badges">
-                    <span class="badge">Dart</span>
-                    <span class="badge">Flutter</span>
-                    <span class="badge">Java</span>
-                    <span class="badge">JavaScript</span>
-                </div>
-                <p>I’m currently learning:</p>
-                <div class="badges">
-                    <span class="badge">Python</span>
-                    <span class="badge">C++</span>
-                    <span class="badge">C#</span>
-                </div>
-            </div>
+        <p>Hello! I'm <strong>Skybl0cker</strong>, a high-school student passionate about coding and technology. I have experience with various programming languages including <strong>Dart/Flutter, Java, and JavaScript</strong>, and I'm currently learning <strong>Python, C++, and C#</strong>.</p>
+    </div>
 
-            <!-- Card 2: Robotics Team -->
-            <div class="card">
-                <img src="robot.jpeg" alt="FRC Robotics Team"> <!-- Replace with your image -->
-                <h3>Team Co-Captain & Scouting Lead</h3>
-                <p>I am the Co-Captain and Scouting Lead for my school's robotics team, <strong>FRC 3824 - HVA RoHAWKtics</strong>. I lead the team's scouting efforts in competitions and mentor younger members.</p>
+    <!-- Skills & Hobbies Section -->
+    <div class="info-sections">
+        <!-- Skills Card -->
+        <div class="info-card">
+            <h3>Coding Skills</h3>
+            <p>I have experience in the following languages and technologies:</p>
+            <div class="badges">
+                <span class="badge">Dart</span>
+                <span class="badge">Flutter</span>
+                <span class="badge">Java</span>
+                <span class="badge">JavaScript</span>
+                <span class="badge">HTML</span>
+                <span class="badge">CSS</span>
             </div>
+            <p>Currently learning:</p>
+            <div class="badges">
+                <span class="badge">Python</span>
+                <span class="badge">C#</span>
+                <span class="badge">C++</span>
+            </div>
+        </div>
 
-            <!-- Card 3: Hobbies -->
-            <div class="card">
-                <img src="xbox.jpg" alt="Modded Original Xbox"> <!-- Replace with your image -->
-                <h3>My Hobbies & Interests</h3>
-                <p>In addition to coding and robotics, I enjoy working with technology in other ways. Some of my hobbies include:</p>
-                <ul>
-                    <li>Console Modding</li>
-                    <li>Restoring Vintage Computers</li>
-                    <li>Collecting old and new technology</li>
-                </ul>
-            </div>
+        <!-- Robotics Card -->
+        <div class="info-card">
+            <h3>Robotics & Leadership</h3>
+            <p>Co-Captain and Scouting Lead of <strong>FRC 3824 - HVA RoHAWKtics</strong>, leading scouting efforts and mentoring younger students in programming and robotics.</p>
+        </div>
+
+        <!-- Hobbies Card -->
+        <div class="info-card">
+            <h3>Hobbies & Interests</h3>
+            <p>Aside from coding and robotics, I enjoy modding consoles, restoring vintage computers, and collecting tech of all kinds.</p>
         </div>
     </div>
 
     <!-- Skills Section -->
     <div class="skills-container">
-        <h3>Programming Language Knowledge</h3>
+        <h2>Programming Language Proficiency</h2>
 
         <!-- Skill 1: Dart/Flutter -->
         <div class="skill-bar">
@@ -340,6 +345,8 @@
                 <div class="progress-bar progress-bar-fill" style="--progress-width: 20%;">20%</div>
             </div>
         </div>
+
+        <!-- Skill 7: C++ (Learning) -->
         <div class="skill-bar">
             <h4>C++ (Learning)</h4>
             <div class="progress-bar-bg">
