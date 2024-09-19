@@ -12,11 +12,12 @@
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Courier New', Courier, monospace; /* Monospace font */
+            font-family: 'Courier New', Courier, monospace;
             background-color: #2c2c2c; /* Dark background */
             color: #f0f0f0; /* Light text */
             overflow-x: hidden;
             scroll-behavior: smooth;
+            line-height: 1.6;
         }
 
         /* Navigation Bar */
@@ -24,7 +25,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 15px;
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -50,7 +51,7 @@
         }
 
         nav ul li a:hover {
-            color: #ffcc00; /* Hover color */
+            color: #4a4a4a; /* Hover color */
         }
 
         .logo {
@@ -69,12 +70,13 @@
             padding: 0 20px;
             border-bottom: 1px solid #444;
             position: relative;
+            overflow: hidden;
         }
 
         .hero h1 {
             font-size: 4rem;
-            margin-bottom: 15px;
-            animation: fadeIn 2s ease; /* Fade-in animation */
+            margin-bottom: 20px;
+            animation: slideIn 1s ease forwards; /* Slide-in animation */
         }
 
         .hero p {
@@ -82,170 +84,152 @@
             max-width: 800px;
             margin: 0 auto;
             color: #bbbbbb; /* Lighter text */
-            animation: fadeIn 3s ease; /* Fade-in animation */
+            animation: fadeIn 2s ease forwards; /* Fade-in animation */
         }
 
-        /* Floating Particles Effect */
-        .particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background-color: #f0f0f0;
-            border-radius: 50%;
-            animation: move 5s infinite ease-in-out;
-            opacity: 0.6;
-        }
-
-        /* Particle Animation */
-        @keyframes move {
+        /* Animations */
+        @keyframes fadeIn {
             0% {
-                transform: translateY(0) translateX(0) scale(0.8);
-                opacity: 0.8;
-            }
-            50% {
-                opacity: 1;
-                transform: translateY(30px) translateX(50px) scale(1.2);
+                opacity: 0;
             }
             100% {
-                transform: translateY(-30px) translateX(-50px) scale(0.8);
-                opacity: 0.6;
-            }
-        }
-
-        /* Fade-in Animation */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
                 opacity: 1;
-                transform: translateY(0);
             }
         }
 
-        /* Info Section */
-        .info-section {
+        @keyframes slideIn {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Section Animations */
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeSlide 1s ease forwards;
+        }
+
+        .section-content {
+            opacity: 0;
+            animation: fadeSlide 1.5s ease forwards;
+        }
+
+        /* Skills Section */
+        .skills-section {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             padding: 60px 20px;
             max-width: 1200px;
             margin: 0 auto;
+            opacity: 0;
+            animation: fadeSlide 1s ease forwards;
         }
 
-        /* Info Cards */
-        .info-card {
+        .skills-section .skill-card {
             background: #1e1e1e;
-            border-radius: 15px;
             padding: 30px;
+            border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-align: center;
             position: relative;
             overflow: hidden;
-            z-index: 1;
         }
 
-        .info-card:hover {
+        .skills-section .skill-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
         }
 
-        .info-card h3 {
-            font-size: 1.8rem;
-            color: #ffcc00; /* Gold color */
-            margin-bottom: 15px;
-        }
-
-        .info-card p {
-            font-size: 1.1rem;
-            color: #bbbbbb; /* Light gray */
-        }
-
-        /* Ripple Effect on Hover */
-        .info-card::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 204, 0, 0.4); /* Gold ripple */
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
-            z-index: -1;
-        }
-
-        .info-card:hover::after {
-            width: 300%;
-            height: 300%;
-        }
-
-        /* Skills Section */
-        .skills-section {
-            background: #1e1e1e;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 60px auto;
-            max-width: 1000px;
-            text-align: center;
-        }
-
-        .skills-section h2 {
-            font-size: 2.5rem;
+        .skills-section h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
             color: #f0f0f0;
-            margin-bottom: 30px;
         }
 
-        .skill {
+        .skills-section .description {
+            font-size: 1rem;
+            color: #bbbbbb;
+            margin-bottom: 20px;
+        }
+
+        /* Info Section */
+        .info-section {
+            background: #1e1e1e;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 60px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            animation: fadeSlide 1.5s ease forwards;
+        }
+
+        .info-section .info-card {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            padding: 10px 20px;
+            padding: 30px;
+            border-radius: 10px;
             background: #2c2c2c;
-            border-radius: 15px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
         }
 
-        .skill h4 {
-            font-size: 1.2rem;
+        .info-section .info-card:hover {
+            transform: scale(1.05);
+        }
+
+        .info-section .info-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-right: 20px;
+            filter: grayscale(100%);
+        }
+
+        .info-section .info-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
             color: #f0f0f0;
         }
 
-        .skill .progress-bar-bg {
-            background-color: #444;
-            border-radius: 25px;
-            height: 20px;
-            flex-grow: 1;
-            margin: 0 15px;
-            overflow: hidden;
-            position: relative;
+        .info-section .info-card p {
+            font-size: 1rem;
+            color: #bbbbbb;
         }
 
-        .skill .progress-bar {
-            background-color: #565456; /* Gold bar */
-            height: 100%;
-            width: var(--progress-width);
-            border-radius: 25px;
-            transition: width 1s ease-in-out;
+        /* Footer Section */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #1e1e1e;
+            border-top: 1px solid #444;
+            margin-top: 60px;
+            opacity: 0;
+            animation: fadeSlide 2s ease forwards;
         }
 
-        .skill .percent {
-            font-size: 1.2rem;
-            color: #f0f0f0;
+        .footer p {
+            font-size: 1rem;
+            color: #bbbbbb;
         }
 
         /* Responsive Styling */
@@ -258,25 +242,24 @@
                 font-size: 1rem;
             }
 
-            .info-section {
+            .skills-section {
                 grid-template-columns: 1fr;
             }
 
-            .info-card h3 {
-                font-size: 1.5rem;
-            }
-
-            .skills-section {
-                width: 90%;
-            }
-
-            .skill {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .skill .progress-bar-bg {
+            .skills-section .skill-card {
                 width: 100%;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .info-section .info-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .info-section .info-card img {
+                margin: 0 0 15px 0;
             }
         }
     </style>
@@ -297,117 +280,99 @@
     <!-- Hero Section -->
     <div class="hero">
         <div class="hero-content">
-            <h1>About Me</h1>
-            <p>High-school hobbyist coder and passionate tech enthusiast. I'm proficient in Dart, Java, and JavaScript, and always exploring new technologies.</p>
-        </div>
-        <div class="particles">
-            <!-- Particles (Randomly positioned divs to create floating effect) -->
-            <div class="particle" style="top: 10%; left: 20%; animation-duration: 4s;"></div>
-            <div class="particle" style="top: 30%; left: 50%; animation-duration: 6s;"></div>
-            <div class="particle" style="top: 60%; left: 30%; animation-duration: 8s;"></div>
-            <div class="particle" style="top: 80%; left: 70%; animation-duration: 5s;"></div>
-            <div class="particle" style="top: 40%; left: 80%; animation-duration: 7s;"></div>
-            <div class="particle" style="top: 20%; left: 90%; animation-duration: 9s;"></div>
+            <h1>Welcome to My World</h1>
+            <p>I'm a high-school hobbyist coder and tech enthusiast, exploring the vast world of programming and technology. Let's take a journey through my skills, experiences, and interests.</p>
         </div>
     </div>
 
     <!-- Skills Section -->
-    <div class="skills-section">
-        <h2>My Skills</h2>
-        <!-- Skill 1: Dart/Flutter -->
-        <div class="skill">
+    <div class="skills-section" id="skills">
+        <div class="skill-card">
             <h4>Dart/Flutter</h4>
-            <div class="progress-bar-bg">
-                <div class="progress-bar" style="--progress-width: 100%;"></div>
-            </div>
-            <div class="percent">100%</div>
+            <p class="description">Building cross-platform apps with beautiful UIs.</p>
         </div>
-        <!-- Skill 2: Java -->
-        <div class="skill">
+        <div class="skill-card">
             <h4>Java</h4>
-            <div class="progress-bar-bg">
-                <div class="progress-bar" style="--progress-width: 85%;"></div>
-            </div>
-            <div class="percent">85%</div>
+            <p class="description">Versatile programming language for a variety of projects.</p>
         </div>
-        <!-- Skill 3: JavaScript -->
-        <div class="skill">
+        <div class="skill-card">
             <h4>JavaScript</h4>
-            <div class="progress-bar-bg">
-                <div class="progress-bar" style="--progress-width: 70%;"></div>
-            </div>
-            <div class="percent">70%</div>
+            <p class="description">Dynamic and interactive web development.</p>
         </div>
-        <!-- Skill 4: HTML/CSS -->
-        <div class="skill">
+        <div class="skill-card">
             <h4>HTML/CSS</h4>
-            <div class="progress-bar-bg">
-                <div class="progress-bar" style="--progress-width: 100%;"></div>
-            </div>
-            <div class="percent">100%</div>
+            <p class="description">Creating responsive and visually appealing websites.</p>
         </div>
-        <!-- Skill 5: Python (Learning) -->
-        <div class="skill">
-            <h4>Python (Learning)</h4>
-            <div class="progress-bar-bg">
-                <div class="progress-bar" style="--progress-width: 40%;"></div>
-            </div>
-            <div class="percent">40%</div>
+        <div class="skill-card">
+            <h4>Python</h4>
+            <p class="description">Exploring data analysis and automation scripts.</p>
         </div>
-        <!-- Skill 6: C# (Learning) -->
-        <div class="skill">
-            <h4>C# (Learning)</h4>
-            <div class="progress-bar-bg">
-                <div class="progress-bar" style="--progress-width: 20%;"></div>
-            </div>
-            <div class="percent">20%</div>
-        </div>
-        <!-- Skill 7: C++ (Learning) -->
-        <div class="skill">
-            <h4>C++ (Learning)</h4>
-            <div class="progress-bar-bg">
-                <div class="progress-bar" style="--progress-width: 10%;"></div>
-            </div>
-            <div class="percent">10%</div>
+        <div class="skill-card">
+            <h4>C#</h4>
+            <p class="description">Learning game development and simulations.</p>
         </div>
     </div>
 
     <!-- Info Section -->
     <div class="info-section">
-        <!-- Coding Skills Card -->
-        <div class="info-card">
-            <h3>Coding Skills</h3>
-            <p>I have experience in various programming languages and technologies.</p>
-            <p>Currently learning:</p>
-            <div class="badges">
-                <span class="badge">Python</span>
-                <span class="badge">C#</span>
-                <span class="badge">C++</span>
+        <h2 class="section-title">More About Me</h2>
+        <div class="section-content">
+            <!-- Info Card 1 -->
+            <div class="info-card">
+                <img src="coding.jpg" alt="Coding">
+                <div>
+                    <h3>Passionate Coder</h3>
+                    <p>I enjoy exploring new programming languages and building unique projects. My coding journey started in high school and has been growing ever since.</p>
+                </div>
             </div>
-        </div>
 
-        <!-- Robotics Card -->
-        <div class="info-card">
-            <h3>Robotics & Leadership</h3>
-            <p>Co-Captain and Scouting Lead of <strong>FRC 3824 - HVA RoHAWKtics</strong>, leading scouting efforts and mentoring younger students in programming and robotics.</p>
-        </div>
+            <!-- Info Card 2 -->
+            <div class="info-card">
+                <img src="robot.jpeg" alt="Robotics">
+                <div>
+                    <h3>Robotics Enthusiast</h3>
+                    <p>As the Co-Captain and Scouting Lead of my school's robotics team, I lead our efforts in competitions and mentor younger members in programming and strategy.</p>
+                </div>
+            </div>
 
-        <!-- Hobbies Card -->
-        <div class="info-card">
-            <h3>Hobbies & Interests</h3>
-            <p>Aside from coding and robotics, I enjoy modding consoles, restoring vintage computers, and collecting tech of all kinds.</p>
+            <!-- Info Card 3 -->
+            <div class="info-card">
+                <img src="xbox.jpg" alt="Hobbies">
+                <div>
+                    <h3>Hobbies & Interests</h3>
+                    <p>In my spare time, I love modding consoles, restoring vintage computers, and collecting tech. I enjoy working on hardware projects and exploring new possibilities.</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- JavaScript to Trigger Animation on Page Load -->
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>&copy; 2024 Skybl0cker. All rights reserved. | Follow my journey on GitHub and YouTube.</p>
+    </div>
+
+    <!-- JavaScript for Animations -->
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const progressBars = document.querySelectorAll(".progress-bar");
-            progressBars.forEach(bar => {
-                bar.style.width = bar.style.getPropertyValue('--progress-width');
+        // Add animations to elements on scroll
+        const sections = document.querySelectorAll('.skills-section, .info-section, .footer');
+        const options = {
+            root: null,
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
             });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
         });
     </script>
-
 </body>
 </html>
