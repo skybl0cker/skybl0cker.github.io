@@ -90,7 +90,8 @@
         /* Waving Emoji Animation */
         .wave-emoji {
             display: inline-block;
-            animation: wave 2s infinite; /* Repeats the wave */
+            animation: wave 2s ease; /* Wave animation */
+            animation-iteration-count: 2; /* Limit to 2 waves */
             transform-origin: 70% 70%; /* Adjusts the pivot point for the wave */
             font-size: 1.2em;
         }
