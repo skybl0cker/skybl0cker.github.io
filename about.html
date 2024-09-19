@@ -90,17 +90,18 @@
         /* Waving Emoji Animation */
         .wave-emoji {
             display: inline-block;
-            animation: wave 2s ease; /* Wave animation */
-            animation-iteration-count: 2; /* Limit to 2 waves */
+            animation: wave 1.5s ease-in-out; /* Smooth wave animation */
+            animation-iteration-count: 1; /* Only one back-and-forth wave */
             transform-origin: 70% 70%; /* Adjusts the pivot point for the wave */
             font-size: 1.2em;
         }
 
         @keyframes wave {
-            0%, 100% { transform: rotate(0deg); }  /* Starting and ending point */
-            25% { transform: rotate(-15deg); }  /* Moving to left */
-            50% { transform: rotate(0deg); }  /* Returning to center */
-            75% { transform: rotate(15deg); }  /* Moving to right */
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-15deg); } /* Move left */
+            50% { transform: rotate(0deg); } /* Back to center */
+            75% { transform: rotate(15deg); } /* Move right */
+            100% { transform: rotate(0deg); } /* Back to center */
         }
 
         /* Floating Particles Effect */
