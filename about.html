@@ -90,7 +90,7 @@
         /* Waving Emoji Animation */
         .wave-emoji {
             display: inline-block;
-            animation: wave 1.5s ease-in-out; /* Smooth wave animation */
+            animation: wave 1s ease-in-out; /* Fluid wave animation */
             animation-iteration-count: 1; /* Only one back-and-forth wave */
             transform-origin: 70% 70%; /* Adjusts the pivot point for the wave */
             font-size: 1.2em;
@@ -98,10 +98,8 @@
 
         @keyframes wave {
             0% { transform: rotate(0deg); }
-            25% { transform: rotate(-15deg); } /* Move left */
-            50% { transform: rotate(0deg); } /* Back to center */
-            75% { transform: rotate(15deg); } /* Move right */
-            100% { transform: rotate(0deg); } /* Back to center */
+            50% { transform: rotate(-30deg); } /* Smooth move to the left */
+            100% { transform: rotate(0deg); } /* Smooth return to center */
         }
 
         /* Floating Particles Effect */
