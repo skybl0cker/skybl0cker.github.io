@@ -128,9 +128,41 @@
             margin-bottom: 1rem;
         }
 
+        /* Skill Summary */
+        .skill-summary {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .skill-summary-item {
+            background: #1e1e1e;
+            border-radius: 10px;
+            padding: 10px 20px;
+            margin: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .skill-summary-item h4 {
+            font-size: 1.2rem;
+            color: #f0f0f0;
+            margin-bottom: 5px;
+        }
+
+        .skill-summary-item span {
+            font-size: 1rem;
+            color: #f0f0f0;
+        }
+
         /* Skill Bar Container */
         .skill-bar {
             margin-bottom: 20px;
+            display: flex;
+            align-items: center; /* Center the star icon vertically */
         }
 
         /* Skill Bar Title */
@@ -138,6 +170,7 @@
             font-size: 1.2rem;
             margin-bottom: 5px;
             color: #f0f0f0;
+            margin-right: 10px; /* Space between the title and the bar */
         }
 
         /* Progress Bar Background */
@@ -145,6 +178,7 @@
             background-color: #444;
             border-radius: 25px;
             padding: 3px;
+            flex-grow: 1; /* Allow the progress bar to take up remaining space */
         }
 
         /* Progress Bar */
@@ -165,6 +199,15 @@
             width: var(--progress-width); /* Custom property for each skill level */
         }
 
+        /* Star Icon Styling */
+        .star-icon {
+            color: #ffcc00; /* Gold color */
+            margin-left: 10px; /* Space between the bar and star */
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+
         /* Responsive Styling */
         @media (max-width: 768px) {
             h1 {
@@ -174,6 +217,12 @@
                 font-size: 1.5rem;
             }
             p {
+                font-size: 1rem;
+            }
+            .skill-bar h4 {
+                font-size: 1rem;
+            }
+            .star-icon {
                 font-size: 1rem;
             }
         }
@@ -189,6 +238,36 @@
             <li><a href="github.html">/github</a></li>
         </ul>
     </nav>
+
+    <!-- Skill Summary Section -->
+    <div class="skills-container">
+        <div class="skill-summary">
+            <div class="skill-summary-item">
+                <h4>Dart/Flutter</h4>
+                <span>100%</span>
+            </div>
+            <div class="skill-summary-item">
+                <h4>Java</h4>
+                <span>85%</span>
+            </div>
+            <div class="skill-summary-item">
+                <h4>JavaScript</h4>
+                <span>70%</span>
+            </div>
+            <div class="skill-summary-item">
+                <h4>HTML/CSS</h4>
+                <span>100%</span>
+            </div>
+            <div class="skill-summary-item">
+                <h4>Python</h4>
+                <span>40%</span>
+            </div>
+            <div class="skill-summary-item">
+                <h4>C#</h4>
+                <span>20%</span>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <div class="container">
@@ -247,6 +326,7 @@
             <div class="progress-bar-bg">
                 <div class="progress-bar progress-bar-fill" style="--progress-width: 100%;">100%</div>
             </div>
+            <div class="star-icon">⭐</div> <!-- Star icon for 100% skills -->
         </div>
 
         <!-- Skill 2: Java -->
@@ -271,6 +351,7 @@
             <div class="progress-bar-bg">
                 <div class="progress-bar progress-bar-fill" style="--progress-width: 100%;">100%</div>
             </div>
+            <div class="star-icon">⭐</div> <!-- Star icon for 100% skills -->
         </div>
 
         <!-- Skill 5: Python (Learning) -->
