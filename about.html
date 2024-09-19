@@ -12,8 +12,8 @@
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: #1a1a2e;
+            font-family: 'Courier New', monospace;
+            background-color: #2c2c2c; /* Matching homepage background */
             color: #f0f0f0;
             overflow-x: hidden;
         }
@@ -24,11 +24,11 @@
             justify-content: center;
             align-items: center;
             height: 50vh;
-            background: linear-gradient(135deg, #00d9ff, #0077cc);
+            background: linear-gradient(135deg, #00d9ff, #0077cc); /* Gradient with homepage colors */
             position: relative;
             text-align: center;
             padding: 20px;
-            color: #1a1a2e;
+            color: #f0f0f0;
         }
 
         .hero-content {
@@ -56,7 +56,7 @@
         .about-section h2 {
             font-size: 2rem;
             margin-bottom: 20px;
-            color: #00d9ff;
+            color: #00d9ff; /* Light blue to match homepage */
         }
 
         .about-content {
@@ -70,6 +70,7 @@
             width: 100%;
             border-radius: 10px;
             overflow: hidden;
+            border: 2px solid #0077cc; /* Border with homepage accent color */
         }
 
         .about-text {
@@ -81,9 +82,55 @@
             color: #00d9ff;
         }
 
+        /* Robotics Highlight Section */
+        .robotics-section {
+            background-color: #1e1e1e;
+            padding: 60px 20px;
+            color: #00d9ff; /* Light blue to stand out */
+            text-align: center;
+        }
+
+        .robotics-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .robotics-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .robotics-card {
+            background: #2c2c2c;
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .robotics-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .robotics-card h3 {
+            margin: 10px 0;
+            font-size: 1.5rem;
+            color: #00d9ff;
+        }
+
+        .robotics-card p {
+            font-size: 1rem;
+            color: #bbbbbb;
+        }
+
         /* Skills Section */
         .skills-section {
-            background-color: #1e1e1e;
             padding: 60px 20px;
         }
 
@@ -102,7 +149,7 @@
         }
 
         .skill-card {
-            background: #2c2c2c;
+            background: #1e1e1e;
             border-radius: 10px;
             padding: 20px;
             width: 250px;
@@ -151,7 +198,7 @@
         }
 
         .hobby-card {
-            background: #2c2c2c;
+            background: #1e1e1e;
             border-radius: 10px;
             padding: 20px;
             transition: transform 0.3s ease;
@@ -215,11 +262,30 @@
     <div class="about-section">
         <h2>Who I Am</h2>
         <div class="about-content">
-            <img class="about-image" src="logo.png" alt="Profile Picture"> <!-- Replace with your image -->
+            <img class="about-image" src="profile.jpg" alt="Profile Picture"> <!-- Replace with your image -->
             <div class="about-text">
                 <p>Hello! I'm <strong>Skybl0cker</strong>, a high-school student passionate about coding and technology. I have experience with various programming languages including <strong>Dart/Flutter, Java, and JavaScript</strong>, and I'm currently learning <strong>Python, C++, and C#</strong>.</p>
                 <p>I'm the <strong>Co-Captain</strong> and <strong>Scouting Lead</strong> of my school's robotics team, FRC 3824 - HVA RoHAWKtics, where I lead our scouting efforts during competitions and help mentor younger students.</p>
                 <p>In my spare time, I love <strong>modding consoles, restoring vintage computers</strong>, and collecting both old and new tech. I’m always exploring new projects and learning something new every day.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Robotics Section -->
+    <div class="robotics-section">
+        <h2>FRC Robotics & Leadership</h2>
+        <div class="robotics-content">
+            <div class="robotics-card">
+                <h3>Team Co-Captain</h3>
+                <p>Leading my team in competitions and helping to guide strategic decisions and leadership training for new members.</p>
+            </div>
+            <div class="robotics-card">
+                <h3>Scouting Lead</h3>
+                <p>Developing scouting applications and systems to collect and analyze data on competing robots during FRC events.</p>
+            </div>
+            <div class="robotics-card">
+                <h3>Mentorship</h3>
+                <p>Mentoring younger students in programming and robotics, helping to inspire the next generation of STEM enthusiasts.</p>
             </div>
         </div>
     </div>
@@ -260,17 +326,17 @@
         <h2>My Hobbies & Interests</h2>
         <div class="hobbies-grid">
             <div class="hobby-card">
-                <img src="xbox.jpg" alt="Console Modding"> <!-- Replace with your image -->
+                <img src="console_modding.jpg" alt="Console Modding"> <!-- Replace with your image -->
                 <h3>Console Modding</h3>
                 <p>Modding and enhancing classic gaming consoles to unlock new capabilities.</p>
             </div>
             <div class="hobby-card">
-                <img src="computer.jpg" alt="Computer Restoring"> <!-- Replace with your image -->
+                <img src="computer_restoring.jpg" alt="Computer Restoring"> <!-- Replace with your image -->
                 <h3>Restoring Vintage Computers</h3>
                 <p>Restoring old computers to their former glory, preserving a piece of tech history.</p>
             </div>
             <div class="hobby-card">
-                <img src="tech.webp" alt="Tech Collecting"> <!-- Replace with your image -->
+                <img src="tech_collecting.jpg" alt="Tech Collecting"> <!-- Replace with your image -->
                 <h3>Tech Collecting</h3>
                 <p>Collecting and exploring both vintage and cutting-edge technology.</p>
             </div>
