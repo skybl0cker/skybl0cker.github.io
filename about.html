@@ -87,6 +87,21 @@
             animation: fadeIn 2s ease forwards; /* Fade-in animation */
         }
 
+        /* Waving Emoji Animation */
+        .wave-emoji {
+            display: inline-block;
+            animation: wave 2s infinite; /* Repeats the wave */
+            transform-origin: 70% 70%; /* Adjusts the pivot point for the wave */
+            font-size: 1.2em;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }  /* Starting and ending point */
+            25% { transform: rotate(-15deg); }  /* Moving to left */
+            50% { transform: rotate(0deg); }  /* Returning to center */
+            75% { transform: rotate(15deg); }  /* Moving to right */
+        }
+
         /* Floating Particles Effect */
         .particles {
             position: absolute;
@@ -318,7 +333,7 @@
     <!-- Hero Section -->
     <div class="hero">
         <div class="hero-content">
-            <h1>Hi 👋, I'm Skybl0cker</h1>
+            <h1>Hi <span class="wave-emoji">👋</span>, I'm Skybl0cker</h1>
             <p>A high-school hobbyist coder and passionate tech enthusiast, exploring the vast world of programming and technology. Let's take a journey through my skills, experiences, and interests.</p>
         </div>
         <!-- Particles Background -->
