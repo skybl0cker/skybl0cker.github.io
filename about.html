@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Skybl0cker's Portfolio</title>
+    <title>Skybl0cker's Interactive Hub</title>
     <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="logo.png">
     <style>
@@ -13,244 +13,197 @@
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            background-color: #0e0e0e; /* Dark background */
+            background-color: #141414;
             color: #f0f0f0;
             overflow: hidden; /* No scrolling */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            perspective: 1500px; /* 3D Perspective */
         }
 
-        /* Main Container */
+        /* Container */
         .container {
             position: relative;
             width: 90%;
             height: 90%;
-            background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
-            border-radius: 20px;
+            max-width: 1200px;
+            max-height: 700px;
+            background: #1e1e1e;
+            border-radius: 15px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
             overflow: hidden;
-            transform-style: preserve-3d;
-            transform: rotateX(15deg) rotateY(-10deg); /* Initial 3D tilt */
-            transition: transform 0.3s ease;
+            transition: transform 0.5s ease;
         }
 
-        /* Header and Navigation */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
-            background: #151515;
-            border-bottom: 1px solid #444;
-            z-index: 2; /* Overlaps sections */
-            transform: translateZ(40px); /* 3D depth */
-        }
-
-        header .logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        header .logo img {
-            width: 50px;
-            filter: grayscale(100%);
-        }
-
-        header nav ul {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-            margin: 0;
-        }
-
-        header nav ul li a {
-            color: #f0f0f0;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        header nav ul li a:hover {
-            color: #4a4a4a;
-        }
-
-        /* Unique Interactive Elements */
-        .unique-element {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
+        /* Central Hub */
+        .hub {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            background: #292929;
             border-radius: 50%;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            z-index: 1; /* Overlaps shapes */
-            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hub:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Hub Segments */
+        .segment {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            clip-path: polygon(50% 50%, 100% 0, 100% 100%);
+            transform-origin: center center;
+            transition: background 0.3s ease;
+        }
+
+        .segment:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .segment:nth-child(1) {
+            transform: rotate(45deg);
+        }
+
+        .segment:nth-child(2) {
+            transform: rotate(135deg);
+        }
+
+        .segment:nth-child(3) {
+            transform: rotate(225deg);
+        }
+
+        .segment:nth-child(4) {
+            transform: rotate(315deg);
+        }
+
+        /* Segment Labels */
+        .segment-label {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
             font-weight: bold;
-            color: #f0f0f0;
-            transform-style: preserve-3d;
-        }
-
-        .unique-element:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1) translateZ(20px); /* Elevate on hover */
-        }
-
-        .unique-element:before {
-            content: attr(data-label);
             font-size: 1.2rem;
-            transition: opacity 0.3s ease;
+            color: #f0f0f0;
+            pointer-events: none; /* Disable pointer events */
         }
 
-        .unique-element:hover:before {
-            opacity: 0;
+        .segment-label span {
+            display: block;
+            transition: transform 0.3s ease;
         }
 
-        .unique-element.active {
-            background: #f0f0f0;
-            color: #0e0e0e;
-            border-color: rgba(0, 0, 0, 0.2);
-            transform: scale(1.3) translateZ(50px); /* Further Elevation */
+        .segment:hover .segment-label span {
+            transform: translateY(-10px);
         }
 
-        /* Shape Animations */
-        .shape {
+        /* Content Panel */
+        .content-panel {
             position: absolute;
-            background: #1a1a1a;
-            opacity: 0.2;
-            border-radius: 50%;
-            transition: transform 0.5s ease, opacity 0.5s ease;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-10px) rotate(15deg);
-            }
-        }
-
-        /* Different Shape Sizes */
-        .shape.small {
-            width: 80px;
-            height: 80px;
-            left: 20%;
-            top: 30%;
-            animation-duration: 10s;
-        }
-
-        .shape.medium {
-            width: 150px;
-            height: 150px;
-            right: 15%;
-            bottom: 20%;
-            animation-duration: 15s;
-        }
-
-        .shape.large {
-            width: 200px;
-            height: 200px;
-            left: 60%;
-            top: 50%;
-            animation-duration: 12s;
-        }
-
-        /* Modal Content */
-        .modal {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            background: #222222;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            z-index: 5;
-            transition: transform 0.5s ease;
-            max-width: 600px;
             width: 90%;
-            opacity: 0;
+            max-width: 900px;
+            max-height: 90%;
+            background: #1a1a1a;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            display: none;
+            overflow-y: auto;
+            z-index: 10;
         }
 
-        .modal.active {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
+        .content-panel.active {
+            display: block;
         }
 
-        .modal h2 {
-            margin-bottom: 20px;
+        .content-panel h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
             color: #f0f0f0;
         }
 
-        .modal p {
+        .content-panel p {
+            font-size: 1.1rem;
             color: #bbbbbb;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
-        .modal button {
-            background: #333;
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #444;
             color: #f0f0f0;
             border: none;
-            padding: 10px 20px;
             border-radius: 8px;
+            padding: 8px 12px;
             cursor: pointer;
             transition: background 0.3s ease;
         }
 
-        .modal button:hover {
-            background: #444;
+        .close-btn:hover {
+            background: #555;
         }
 
         /* Footer */
         footer {
             position: absolute;
-            bottom: 0;
+            bottom: 10px;
             width: 100%;
-            padding: 15px;
-            background: #151515;
             text-align: center;
             color: #bbbbbb;
-            border-radius: 0 0 20px 20px;
-            border-top: 1px solid #444;
-            z-index: 2; /* Overlaps main container */
-            transform: translateZ(30px); /* 3D depth */
         }
 
-        /* Responsive Design */
+        /* Responsive Styling */
         @media (max-width: 768px) {
             body, html {
+                overflow: auto;
                 height: auto;
-                overflow-y: auto; /* Enable scrolling on small screens */
-                perspective: none; /* Disable 3D perspective */
+                display: block;
             }
 
             .container {
+                width: 100%;
                 height: auto;
-                transform: none; /* Disable 3D tilt */
+                flex-direction: column;
             }
 
-            header, footer {
-                transform: none; /* Disable 3D depth */
+            .hub {
+                width: 200px;
+                height: 200px;
             }
 
-            .unique-element {
-                transform: none; /* Disable 3D hover */
+            .segment-label {
+                font-size: 1rem;
             }
 
-            .modal {
+            .content-panel {
                 max-width: 90%;
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
+                height: auto;
+            }
+
+            .content-panel h1 {
+                font-size: 1.5rem;
+            }
+
+            .content-panel p {
+                font-size: 1rem;
             }
         }
     </style>
@@ -258,72 +211,91 @@
 <body>
 
     <div class="container">
-        <!-- Header Section -->
-        <header>
-            <div class="logo">
-                <img src="logo.png" alt="Skybl0cker Logo">
-                <h1>Skybl0cker</h1>
+        <!-- Central Hub -->
+        <div class="hub">
+            <div class="segment" data-panel="homePanel">
+                <div class="segment-label">
+                    <span>Home</span>
+                </div>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#!" data-modal="skillsModal">Skills</a></li>
-                    <li><a href="#!" data-modal="projectsModal">Projects</a></li>
-                    <li><a href="#!" data-modal="aboutModal">About</a></li>
-                </ul>
-            </nav>
-        </header>
+            <div class="segment" data-panel="skillsPanel">
+                <div class="segment-label">
+                    <span>Skills</span>
+                </div>
+            </div>
+            <div class="segment" data-panel="projectsPanel">
+                <div class="segment-label">
+                    <span>Projects</span>
+                </div>
+            </div>
+            <div class="segment" data-panel="aboutPanel">
+                <div class="segment-label">
+                    <span>About</span>
+                </div>
+            </div>
+        </div>
 
-        <!-- Interactive Elements -->
-        <div class="unique-element" data-modal="skillsModal" data-label="Skills" style="top: 20%; left: 30%; width: 100px; height: 100px;">Skills</div>
-        <div class="unique-element" data-modal="projectsModal" data-label="Projects" style="top: 50%; left: 50%; width: 120px; height: 120px;">Projects</div>
-        <div class="unique-element" data-modal="aboutModal" data-label="About" style="top: 75%; left: 20%; width: 80px; height: 80px;">About</div>
+        <!-- Content Panels -->
+        <div class="content-panel" id="homePanel">
+            <button class="close-btn" data-close>&times;</button>
+            <h1>Welcome to Skybl0cker's World</h1>
+            <p>Discover my projects, skills, and passion for technology. A high-school coder exploring the world of programming and tech.</p>
+        </div>
 
-        <!-- Floating Shapes -->
-        <div class="shape small"></div>
-        <div class="shape medium"></div>
-        <div class="shape large"></div>
-
-        <!-- Modal Windows -->
-        <div class="modal" id="skillsModal">
-            <h2>My Skills</h2>
+        <div class="content-panel" id="skillsPanel">
+            <button class="close-btn" data-close>&times;</button>
+            <h1>My Skills</h1>
             <p>I have experience with Dart/Flutter, Java, JavaScript, HTML/CSS, Python, and more!</p>
-            <button data-close>Close</button>
+            <p>I'm currently focusing on building cross-platform applications and learning more about game development and AI.</p>
         </div>
 
-        <div class="modal" id="projectsModal">
-            <h2>My Projects</h2>
+        <div class="content-panel" id="projectsPanel">
+            <button class="close-btn" data-close>&times;</button>
+            <h1>My Projects</h1>
             <p>Explore my various projects, from web development to robotics applications and more.</p>
-            <button data-close>Close</button>
+            <p>Notable projects include:</p>
+            <ul>
+                <li><strong>ScoutinFRC:</strong> A scouting app for FIRST Robotics.</li>
+                <li><strong>Flutter Scouting Framework:</strong> A mobile framework for teaching Flutter.</li>
+                <li><strong>FRC Simulator:</strong> A simulator for reliving old FRC games.</li>
+            </ul>
         </div>
 
-        <div class="modal" id="aboutModal">
-            <h2>About Me</h2>
-            <p>I'm a high-school student passionate about technology, coding, and robotics. Check out my hobbies and interests!</p>
-            <button data-close>Close</button>
+        <div class="content-panel" id="aboutPanel">
+            <button class="close-btn" data-close>&times;</button>
+            <h1>About Me</h1>
+            <p>I'm a high-school student passionate about technology, coding, and robotics. I am the Co-Captain and Scouting Lead for my school's robotics team, FRC 3824 - HVA RoHAWKtics. I love experimenting with different programming languages and building innovative projects.</p>
+            <p>My hobbies include:</p>
+            <ul>
+                <li>Console Modding</li>
+                <li>Restoring Vintage Computers</li>
+                <li>Collecting old and new technology</li>
+            </ul>
         </div>
 
-        <!-- Footer Section -->
+        <!-- Footer -->
         <footer>
-            <p>&copy; 2024 Skybl0cker. All rights reserved. | Follow my journey on GitHub and YouTube.</p>
+            &copy; 2024 Skybl0cker. All rights reserved. | Follow my journey on GitHub and YouTube.
         </footer>
     </div>
 
-    <!-- JavaScript for Modal Control -->
+    <!-- JavaScript for Interaction -->
     <script>
-        const modals = document.querySelectorAll('.modal');
-        const uniqueElements = document.querySelectorAll('.unique-element');
-        const closeButtons = document.querySelectorAll('[data-close]');
+        const segments = document.querySelectorAll('.segment');
+        const panels = document.querySelectorAll('.content-panel');
+        const closeButtons = document.querySelectorAll('.close-btn');
 
-        uniqueElements.forEach(element => {
-            element.addEventListener('click', () => {
-                const modalId = element.getAttribute('data-modal');
-                document.getElementById(modalId).classList.add('active');
+        segments.forEach(segment => {
+            segment.addEventListener('click', () => {
+                const targetPanel = document.getElementById(segment.getAttribute('data-panel'));
+                panels.forEach(panel => panel.classList.remove('active'));
+                targetPanel.classList.add('active');
             });
         });
 
         closeButtons.forEach(button => {
             button.addEventListener('click', () => {
-                modals.forEach(modal => modal.classList.remove('active'));
+                panels.forEach(panel => panel.classList.remove('active'));
             });
         });
     </script>
