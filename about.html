@@ -13,26 +13,28 @@
             margin: 0;
             padding: 0;
             font-family: 'Poppins', sans-serif;
-            background-color: #0e0e0e;
+            background-color: #0e0e0e; /* Dark background */
             color: #f0f0f0;
             overflow: hidden; /* No scrolling */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            perspective: 1500px; /* 3D Perspective */
         }
 
-        /* Container */
+        /* Main Container */
         .container {
-            max-width: 1200px;
-            width: 100%;
-            height: 90%;
-            background: #1a1a1a;
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-            display: flex;
-            flex-direction: column;
             position: relative;
+            width: 90%;
+            height: 90%;
+            background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transform: rotateX(15deg) rotateY(-10deg); /* Initial 3D tilt */
+            transition: transform 0.3s ease;
         }
 
         /* Header and Navigation */
@@ -40,10 +42,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 30px;
+            padding: 15px 30px;
             background: #151515;
-            border-radius: 20px 20px 0 0;
             border-bottom: 1px solid #444;
+            z-index: 2; /* Overlaps sections */
+            transform: translateZ(40px); /* 3D depth */
         }
 
         header .logo {
@@ -59,7 +62,7 @@
 
         header nav ul {
             display: flex;
-            gap: 30px;
+            gap: 20px;
             list-style: none;
             margin: 0;
         }
@@ -75,160 +78,179 @@
             color: #4a4a4a;
         }
 
-        /* Main Content */
-        .main-content {
-            flex-grow: 1;
+        /* Unique Interactive Elements */
+        .unique-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            z-index: 1; /* Overlaps shapes */
+            overflow: hidden;
             display: flex;
-            justify-content: center;
             align-items: center;
-            padding: 20px;
-            position: relative;
-        }
-
-        /* Content Sections */
-        .content-section {
-            display: none;
+            justify-content: center;
             text-align: center;
-            width: 100%;
-        }
-
-        .content-section.active {
-            display: block;
-        }
-
-        .content-section h1, .content-section h2 {
+            font-weight: bold;
             color: #f0f0f0;
+            transform-style: preserve-3d;
+        }
+
+        .unique-element:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1) translateZ(20px); /* Elevate on hover */
+        }
+
+        .unique-element:before {
+            content: attr(data-label);
+            font-size: 1.2rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .unique-element:hover:before {
+            opacity: 0;
+        }
+
+        .unique-element.active {
+            background: #f0f0f0;
+            color: #0e0e0e;
+            border-color: rgba(0, 0, 0, 0.2);
+            transform: scale(1.3) translateZ(50px); /* Further Elevation */
+        }
+
+        /* Shape Animations */
+        .shape {
+            position: absolute;
+            background: #1a1a1a;
+            opacity: 0.2;
+            border-radius: 50%;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(15deg);
+            }
+        }
+
+        /* Different Shape Sizes */
+        .shape.small {
+            width: 80px;
+            height: 80px;
+            left: 20%;
+            top: 30%;
+            animation-duration: 10s;
+        }
+
+        .shape.medium {
+            width: 150px;
+            height: 150px;
+            right: 15%;
+            bottom: 20%;
+            animation-duration: 15s;
+        }
+
+        .shape.large {
+            width: 200px;
+            height: 200px;
+            left: 60%;
+            top: 50%;
+            animation-duration: 12s;
+        }
+
+        /* Modal Content */
+        .modal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: #222222;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            z-index: 5;
+            transition: transform 0.5s ease;
+            max-width: 600px;
+            width: 90%;
+            opacity: 0;
+        }
+
+        .modal.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .modal h2 {
+            margin-bottom: 20px;
+            color: #f0f0f0;
+        }
+
+        .modal p {
+            color: #bbbbbb;
             margin-bottom: 20px;
         }
 
-        .content-section p {
-            max-width: 800px;
-            margin: 0 auto 20px;
-            color: #bbbbbb;
-        }
-
-        /* Skills Section */
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            justify-items: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .skill-card {
-            background: #222222;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-            overflow: hidden;
+        .modal button {
+            background: #333;
+            color: #f0f0f0;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
             cursor: pointer;
-            position: relative;
+            transition: background 0.3s ease;
         }
 
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .skill-card h3 {
-            margin-top: 10px;
-            font-size: 1.2rem;
-            color: #f0f0f0;
-        }
-
-        .skill-card p {
-            font-size: 1rem;
-            color: #bbbbbb;
-        }
-
-        /* Projects and About Section */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            justify-items: center;
-            align-items: start;
-            margin-top: 20px;
-        }
-
-        .card {
-            background: #222222;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-            overflow: hidden;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .card img {
-            width: 100%;
-            height: 150px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .card h3 {
-            font-size: 1.2rem;
-            color: #f0f0f0;
-            margin-bottom: 10px;
-        }
-
-        .card p {
-            font-size: 1rem;
-            color: #bbbbbb;
-            margin-bottom: 10px;
-        }
-
-        .card a {
-            color: #f0f0f0;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .card a:hover {
-            color: #4a4a4a;
+        .modal button:hover {
+            background: #444;
         }
 
         /* Footer */
         footer {
-            background: #151515;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
             padding: 15px;
+            background: #151515;
             text-align: center;
             color: #bbbbbb;
             border-radius: 0 0 20px 20px;
             border-top: 1px solid #444;
+            z-index: 2; /* Overlaps main container */
+            transform: translateZ(30px); /* 3D depth */
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        /* Responsive Styling */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .skills, .grid {
-                grid-template-columns: 1fr;
+            body, html {
+                height: auto;
+                overflow-y: auto; /* Enable scrolling on small screens */
+                perspective: none; /* Disable 3D perspective */
             }
 
-            header nav ul {
-                gap: 15px;
+            .container {
+                height: auto;
+                transform: none; /* Disable 3D tilt */
+            }
+
+            header, footer {
+                transform: none; /* Disable 3D depth */
+            }
+
+            .unique-element {
+                transform: none; /* Disable 3D hover */
+            }
+
+            .modal {
+                max-width: 90%;
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
             }
         }
     </style>
@@ -244,135 +266,40 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#home" data-section="home">/home</a></li>
-                    <li><a href="#skills" data-section="skills">/skills</a></li>
-                    <li><a href="#projects" data-section="projects">/projects</a></li>
-                    <li><a href="#about" data-section="about">/about</a></li>
+                    <li><a href="#!" data-modal="skillsModal">Skills</a></li>
+                    <li><a href="#!" data-modal="projectsModal">Projects</a></li>
+                    <li><a href="#!" data-modal="aboutModal">About</a></li>
                 </ul>
             </nav>
         </header>
 
-        <!-- Main Content Section -->
-        <div class="main-content">
-            <!-- Home Section -->
-            <div class="content-section active" id="home">
-                <h1>Welcome to Skybl0cker's World</h1>
-                <p>Discover my projects, skills, and passion for technology. A high-school coder exploring the world of programming and tech.</p>
-            </div>
+        <!-- Interactive Elements -->
+        <div class="unique-element" data-modal="skillsModal" data-label="Skills" style="top: 20%; left: 30%; width: 100px; height: 100px;">Skills</div>
+        <div class="unique-element" data-modal="projectsModal" data-label="Projects" style="top: 50%; left: 50%; width: 120px; height: 120px;">Projects</div>
+        <div class="unique-element" data-modal="aboutModal" data-label="About" style="top: 75%; left: 20%; width: 80px; height: 80px;">About</div>
 
-            <!-- Skills Section -->
-            <div class="content-section" id="skills">
-                <h2>My Skills</h2>
-                <div class="skills">
-                    <div class="skill-card">
-                        <h3>Dart/Flutter</h3>
-                        <p>Building cross-platform apps with beautiful UIs.</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3>Java</h3>
-                        <p>Versatile programming language for a variety of projects.</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3>JavaScript</h3>
-                        <p>Dynamic and interactive web development.</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3>HTML/CSS</h3>
-                        <p>Creating responsive and visually appealing websites.</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3>Python</h3>
-                        <p>Exploring data analysis and automation scripts.</p>
-                    </div>
-                    <div class="skill-card">
-                        <h3>C#</h3>
-                        <p>Learning game development and simulations.</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Floating Shapes -->
+        <div class="shape small"></div>
+        <div class="shape medium"></div>
+        <div class="shape large"></div>
 
-            <!-- Projects Section -->
-            <div class="content-section" id="projects">
-                <h2>My Projects</h2>
-                <div class="grid">
-                    <div class="card">
-                        <img src="scouting.jpg" alt="ScoutinFRC Project">
-                        <h3>ScoutinFRC</h3>
-                        <p>A scouting application for FIRST Robotics Competition.</p>
-                        <a href="https://github.com/HVA-FRC-3824/ScoutinFRC" target="_blank">View Project</a>
-                    </div>
-                    <div class="card">
-                        <img src="framework.jpg" alt="Flutter Scouting Framework">
-                        <h3>Flutter Scouting Framework</h3>
-                        <p>A mobile-first framework built using Flutter.</p>
-                        <a href="https://github.com/HVA-FRC-3824/ScoutingFramework" target="_blank">View Project</a>
-                    </div>
-                    <div class="card">
-                        <img src="website.webp" alt="My Website">
-                        <h3>My Website</h3>
-                        <p>Showcases my projects and coding skills.</p>
-                        <a href="https://github.com/skybl0cker/skybl0cker.github.io" target="_blank">View Project</a>
-                    </div>
-                    <div class="card">
-                        <img src="crescendo.jpg" alt="FRC Simulator">
-                        <h3>FRC Simulator</h3>
-                        <p>A simulator for FRC, relive old games.</p>
-                        <p>Coming soon...</p>
-                    </div>
-                    <div class="card">
-                        <img src="scouting.jpg" alt="ScoutinFRC Website">
-                        <h3>ScoutinFRC Website</h3>
-                        <p>A web-based version of the ScoutinFRC app.</p>
-                        <p>Coming soon...</p>
-                    </div>
-                    <div class="card">
-                        <img src="web.webp" alt="Sky Browser">
-                        <h3>Sky Browser</h3>
-                        <p>A custom web browser built using Dart and Flutter.</p>
-                        <p>Coming soon...</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Modal Windows -->
+        <div class="modal" id="skillsModal">
+            <h2>My Skills</h2>
+            <p>I have experience with Dart/Flutter, Java, JavaScript, HTML/CSS, Python, and more!</p>
+            <button data-close>Close</button>
+        </div>
 
-            <!-- About Section -->
-            <div class="content-section" id="about">
-                <h2>More About Me</h2>
-                <div class="grid">
-                    <div class="card">
-                        <img src="coding.jpg" alt="Coding">
-                        <h3>High-School Hobbyist Coder</h3>
-                        <p>I am a high-school student passionate about coding and technology. I love exploring different programming languages and experimenting with new projects.</p>
-                        <p>I have experience in:</p>
-                        <div class="badges">
-                            <span class="badge">Dart</span>
-                            <span class="badge">Flutter</span>
-                            <span class="badge">Java</span>
-                            <span class="badge">JavaScript</span>
-                        </div>
-                        <p>I’m currently learning:</p>
-                        <div class="badges">
-                            <span class="badge">Python</span>
-                            <span class="badge">C++</span>
-                            <span class="badge">C#</span>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="robot.jpeg" alt="FRC Robotics Team">
-                        <h3>Team Co-Captain & Scouting Lead</h3>
-                        <p>I am the Co-Captain and Scouting Lead for my school's robotics team, <strong>FRC 3824 - HVA RoHAWKtics</strong>. I lead the team's scouting efforts in competitions and mentor younger members.</p>
-                    </div>
-                    <div class="card">
-                        <img src="xbox.jpg" alt="Modded Original Xbox">
-                        <h3>My Hobbies & Interests</h3>
-                        <p>In addition to coding and robotics, I enjoy working with technology in other ways. Some of my hobbies include:</p>
-                        <ul>
-                            <li>Console Modding</li>
-                            <li>Restoring Vintage Computers</li>
-                            <li>Collecting old and new technology</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="modal" id="projectsModal">
+            <h2>My Projects</h2>
+            <p>Explore my various projects, from web development to robotics applications and more.</p>
+            <button data-close>Close</button>
+        </div>
+
+        <div class="modal" id="aboutModal">
+            <h2>About Me</h2>
+            <p>I'm a high-school student passionate about technology, coding, and robotics. Check out my hobbies and interests!</p>
+            <button data-close>Close</button>
         </div>
 
         <!-- Footer Section -->
@@ -381,21 +308,22 @@
         </footer>
     </div>
 
-    <!-- JavaScript for Section Navigation -->
+    <!-- JavaScript for Modal Control -->
     <script>
-        const navLinks = document.querySelectorAll('nav ul li a');
-        const sections = document.querySelectorAll('.content-section');
+        const modals = document.querySelectorAll('.modal');
+        const uniqueElements = document.querySelectorAll('.unique-element');
+        const closeButtons = document.querySelectorAll('[data-close]');
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.getElementById(e.target.getAttribute('data-section'));
+        uniqueElements.forEach(element => {
+            element.addEventListener('click', () => {
+                const modalId = element.getAttribute('data-modal');
+                document.getElementById(modalId).classList.add('active');
+            });
+        });
 
-                sections.forEach(section => {
-                    section.classList.remove('active');
-                });
-
-                target.classList.add('active');
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                modals.forEach(modal => modal.classList.remove('active'));
             });
         });
     </script>
