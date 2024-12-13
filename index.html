@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <style>
         body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
             background: black;
             color: white;
-            font-family: 'Courier New', Courier, monospace;
             overflow: hidden;
         }
 
@@ -106,14 +108,14 @@
             height: 100%;
             background: repeating-linear-gradient(
                 to bottom,
-                rgba(255, 255, 255, 0.03) 0%,
-                rgba(255, 255, 255, 0.03) 2px,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.1) 2px,
                 transparent 2px,
                 transparent 4px
             );
             pointer-events: none;
-            z-index: 10;
-            animation: crt-lines 0.5s infinite;
+            z-index: 9999; /* Ensure scan lines are on top of everything */
+            animation: crt-lines 0.3s infinite linear;
         }
 
         @keyframes crt-lines {
@@ -124,7 +126,7 @@
         #loadingText {
             display: none;
             position: absolute;
-            top: 20px; /* Positioned at the top */
+            top: 10px; /* Positioned at the top */
             left: 20px;
             font-size: 18px;
             font-weight: bold;
@@ -140,9 +142,10 @@
 <div id="bootScreen">
     <img src="win98.jpg" alt="Booting Image">
     <div id="imageLoader"></div>
+    <div class="crt"></div> <!-- CRT effect -->
 </div>
 <div id="homescreen">
-    <div class="crt"></div>
+    <div class="crt"></div> <!-- CRT effect for desktop -->
     <div id="dock">
         <div class="icon">
             <img src="https://via.placeholder.com/48x48" alt="Icon 1">
@@ -154,7 +157,7 @@
         </div>
     </div>
 </div>
-<div id="loadingText">Starting WebsiteOS...</div>
+<div id="loadingText" class="crt">Starting WebsiteOS...</div>
 <audio id="buttonSound" src="https://freesound.org/data/previews/320/320655_4939433-lq.mp3"></audio>
 <audio id="startupSound" src="https://freesound.org/data/previews/218/218365_4082826-lq.mp3"></audio>
 <script>
@@ -236,7 +239,7 @@
                 setTimeout(() => {
                     bootScreen.style.display = 'none';
                     showLoadingText();
-                }, 5000); // Delay after boot image fully loads.
+                }, 3000); // Timer starts after the image finishes loading.
             });
         }, 2000); // Delay after terminal messages.
     }
