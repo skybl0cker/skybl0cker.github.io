@@ -122,11 +122,14 @@
         }
 
         #loadingText {
+            display: none;
             position: absolute;
-            bottom: 20px;
+            top: 20px; /* Positioned at the top */
             left: 20px;
             font-size: 18px;
             font-weight: bold;
+            background: black; /* Black background */
+            color: white; /* White text */
         }
     </style>
 </head>
@@ -151,7 +154,7 @@
         </div>
     </div>
 </div>
-<div id="loadingText" style="display: none;">Starting WebsiteOS...</div>
+<div id="loadingText">Starting WebsiteOS...</div>
 <audio id="buttonSound" src="https://freesound.org/data/previews/320/320655_4939433-lq.mp3"></audio>
 <audio id="startupSound" src="https://freesound.org/data/previews/218/218365_4082826-lq.mp3"></audio>
 <script>
