@@ -24,11 +24,10 @@
 
         /* Terminal boot screen styles */
         #terminal {
-    text-align: left;
-    white-space: pre; /* Ensures exact spacing for monospace fonts */
-    font-family: 'Courier New', Courier, monospace;
-}
-
+            height: 100vh;
+            padding: 20px;
+            white-space: pre-wrap;
+        }
 
         #bootScreen {
             display: none;
@@ -223,13 +222,11 @@
         const startupSound = document.getElementById('startupSound');
 
         const bootMessages = [
-    'Award Modular BIOS v4.60PGA, An Energy Star Ally\n',
-    'Copyright (C) 1984-98, Award Software, Inc.\n',
-    'Version JE4333\n',
-    '\n',
-    'PENTIUM ODP-MMX CPU at 200MHz\n'
-];
-
+            'Award Modular BIOS v4.60PGA, An Energy Star Ally\n',
+            'Copyright (C) 1984-98, Award Software, Inc.\n',
+            'Version JE4333\n',
+            '\n'
+        ];
 
         const detectMessages = [
             'Detecting IDE Primary Master... ',
