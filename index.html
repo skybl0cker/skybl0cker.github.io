@@ -41,7 +41,7 @@
             width: 100%;
             height: 100%;
             background: black;
-            animation: imageReveal 5s linear forwards;
+            animation: imageReveal 3s linear forwards;
         }
 
         @keyframes imageReveal {
@@ -152,11 +152,15 @@
     </div>
 </div>
 <div id="loadingText" style="display: none;">Starting WebsiteOS...</div>
+<audio id="buttonSound" src="https://freesound.org/data/previews/320/320655_4939433-lq.mp3"></audio>
+<audio id="startupSound" src="https://freesound.org/data/previews/218/218365_4082826-lq.mp3"></audio>
 <script>
     const terminal = document.getElementById('terminal');
     const bootScreen = document.getElementById('bootScreen');
     const homescreen = document.getElementById('homescreen');
     const loadingText = document.getElementById('loadingText');
+    const buttonSound = document.getElementById('buttonSound');
+    const startupSound = document.getElementById('startupSound');
 
     const bootMessages = [
         'Award Modular BIOS v4.60PGA, An Energy Star Ally\n',
@@ -203,6 +207,10 @@
     }
 
     async function bootSequence() {
+        buttonSound.play();
+        await new Promise(resolve => setTimeout(resolve, 500));
+        startupSound.play();
+
         for (const message of bootMessages) {
             await typeMessage(message);
         }
@@ -218,15 +226,15 @@
         // Simulate hard drive detection.
         await detectHardDrives();
 
-        await typeMessage('\nPress DEL to enter SETUP\n', 500);
-
         setTimeout(() => {
             terminal.style.display = 'none';
             bootScreen.style.display = 'block';
-            setTimeout(() => {
-                bootScreen.style.display = 'none';
-                showLoadingText();
-            }, 5000); // Boot screen visible for 5 seconds.
+            bootScreen.addEventListener('animationend', () => {
+                setTimeout(() => {
+                    bootScreen.style.display = 'none';
+                    showLoadingText();
+                }, 5000); // Delay after boot image fully loads.
+            });
         }, 2000); // Delay after terminal messages.
     }
 
