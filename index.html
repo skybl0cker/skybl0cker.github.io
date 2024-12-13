@@ -14,10 +14,59 @@
         }
 
         body {
+            margin: 0;
+            padding: 0;
             font-family: 'Courier New', Courier, monospace;
-            background: #008080; /* Windows 98 default blue background */
+            background: black;
             color: white;
             overflow: hidden;
+        }
+
+        /* Terminal boot screen styles */
+        #terminal {
+            height: 100vh;
+            padding: 20px;
+            white-space: pre-wrap;
+        }
+
+        #bootScreen {
+            display: none;
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+        }
+
+        #bootScreen img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #imageLoader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            animation: imageReveal 3s linear forwards;
+        }
+
+        @keyframes imageReveal {
+            to {
+                top: 100%;
+            }
+        }
+
+        #websiteOSLogo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: lime;
+            font-size: 20px;
+            font-weight: bold;
         }
 
         /* Desktop styles */
@@ -26,7 +75,8 @@
             position: relative;
             width: 100vw;
             height: 100vh;
-            background-color: #008080;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/5/5b/Windows_98_default_wallpaper.png') no-repeat center center/cover;
+            cursor: default;
         }
 
         #desktopIcons {
@@ -42,7 +92,6 @@
             text-align: center;
             margin-bottom: 15px;
             color: white;
-            cursor: pointer;
         }
 
         .desktopIcon img {
@@ -83,44 +132,6 @@
             font-size: 14px;
         }
 
-        /* File Explorer Window */
-        .fileExplorer {
-            display: none;
-            position: absolute;
-            width: 400px;
-            height: 300px;
-            top: 20%;
-            left: 30%;
-            background: white;
-            color: black;
-            border: 2px solid #808080;
-            box-shadow: 5px 5px #404040;
-            z-index: 10;
-        }
-
-        .fileExplorerHeader {
-            background: #c0c0c0;
-            padding: 5px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .closeButton {
-            cursor: pointer;
-            padding: 0 5px;
-            background: red;
-            color: white;
-            font-weight: bold;
-            border: none;
-        }
-
-        .fileExplorerContent {
-            padding: 10px;
-            font-size: 14px;
-        }
-
         .crt {
             position: absolute;
             top: 0;
@@ -143,6 +154,17 @@
             0% { background-position-y: 0; }
             100% { background-position-y: 10px; }
         }
+
+        #loadingText {
+            display: none;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            background: black;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -162,17 +184,17 @@
     <div id="homescreen">
         <div class="crt"></div>
         <div id="desktopIcons">
-            <div class="desktopIcon" onclick="openFolder('myLifeFolder')">
-                <img src="https://via.placeholder.com/48x48" alt="My Life">
-                <span>My Life</span>
+            <div class="desktopIcon">
+                <img src="https://via.placeholder.com/48x48" alt="My Computer">
+                <span>My Computer</span>
             </div>
-            <div class="desktopIcon" onclick="openFolder('githubProjectsFolder')">
-                <img src="https://via.placeholder.com/48x48" alt="GitHub Projects">
-                <span>GitHub Projects</span>
+            <div class="desktopIcon">
+                <img src="https://via.placeholder.com/48x48" alt="Recycle Bin">
+                <span>Recycle Bin</span>
             </div>
-            <div class="desktopIcon" onclick="openFolder('youtubeChannelFolder')">
-                <img src="https://via.placeholder.com/48x48" alt="YouTube Channel">
-                <span>YouTube Channel</span>
+            <div class="desktopIcon">
+                <img src="https://via.placeholder.com/48x48" alt="Internet Explorer">
+                <span>Internet Explorer</span>
             </div>
         </div>
         <div id="taskbar">
@@ -184,60 +206,109 @@
         </div>
     </div>
 
-    <!-- File Explorer Windows -->
-    <div id="myLifeFolder" class="fileExplorer">
-        <div class="fileExplorerHeader">
-            My Life
-            <button class="closeButton" onclick="closeFolder('myLifeFolder')">X</button>
-        </div>
-        <div class="fileExplorerContent">
-            <p>This folder contains details about my life, including hobbies, interests, and more.</p>
-        </div>
-    </div>
+    <!-- Loading text -->
+    <div id="loadingText" class="crt">Starting WebsiteOS...</div>
 
-    <div id="githubProjectsFolder" class="fileExplorer">
-        <div class="fileExplorerHeader">
-            GitHub Projects
-            <button class="closeButton" onclick="closeFolder('githubProjectsFolder')">X</button>
-        </div>
-        <div class="fileExplorerContent">
-            <p>This folder contains links to my GitHub repositories.</p>
-        </div>
-    </div>
-
-    <div id="youtubeChannelFolder" class="fileExplorer">
-        <div class="fileExplorerHeader">
-            YouTube Channel
-            <button class="closeButton" onclick="closeFolder('youtubeChannelFolder')">X</button>
-        </div>
-        <div class="fileExplorerContent">
-            <p>This folder contains links to my YouTube channel and videos.</p>
-        </div>
-    </div>
+    <!-- Audio -->
+    <audio id="buttonSound" src="https://freesound.org/data/previews/320/320655_4939433-lq.mp3"></audio>
+    <audio id="startupSound" src="https://freesound.org/data/previews/218/218365_4082826-lq.mp3"></audio>
 
     <script>
         const terminal = document.getElementById('terminal');
         const bootScreen = document.getElementById('bootScreen');
         const homescreen = document.getElementById('homescreen');
+        const loadingText = document.getElementById('loadingText');
+        const buttonSound = document.getElementById('buttonSound');
+        const startupSound = document.getElementById('startupSound');
+
+        const bootMessages = [
+            'Award Modular BIOS v4.60PGA, An Energy Star Ally\n',
+            'Copyright (C) 1984-98, Award Software, Inc.\n',
+            'Version JE4333\n',
+            '\n'
+        ];
+
+        const detectMessages = [
+            'Detecting IDE Primary Master... ',
+            'Detecting IDE Primary Slave... ',
+            'Detecting IDE Secondary Master... ',
+            'Detecting IDE Secondary Slave... ',
+        ];
+
+        const ramTotal = 262144;
+
+        function typeMessage(message, delay = 500) {
+            return new Promise(resolve => {
+                terminal.innerHTML += message;
+                setTimeout(resolve, delay);
+            });
+        }
+
+        async function loadRAM() {
+            let ramValue = 0;
+            while (ramValue <= ramTotal) {
+                terminal.innerHTML = terminal.innerHTML.replace(/Memory Test: .*/, `Memory Test: ${ramValue}K`);
+                ramValue += 4096;
+                await new Promise(resolve => setTimeout(resolve, 10));
+            }
+            terminal.innerHTML += ' OK\n';
+        }
+
+        async function detectHardDrives() {
+            for (let i = 0; i < detectMessages.length; i++) {
+                await typeMessage(detectMessages[i], 1000);
+                if (i === 0) {
+                    await typeMessage('Detected\n', 500);
+                } else {
+                    await typeMessage('None\n', 500);
+                }
+            }
+        }
 
         async function bootSequence() {
-            terminal.style.display = 'block';
+            buttonSound.play();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            startupSound.play();
+
+            for (const message of bootMessages) {
+                await typeMessage(message);
+            }
+
+            await typeMessage('PENTIUM ODP-MMX CPU at 200MHz\n', 500);
+            terminal.innerHTML += 'Memory Test: ';
+            await loadRAM();
+
+            await typeMessage('\nAward Plug and Play BIOS Extension v1.0A\n', 500);
+            await typeMessage('Copyright (C) 1998, Award Software, Inc.\n', 500);
+
+            await detectHardDrives();
+
             setTimeout(() => {
                 terminal.style.display = 'none';
                 bootScreen.style.display = 'block';
-                setTimeout(() => {
-                    bootScreen.style.display = 'none';
-                    homescreen.style.display = 'block';
-                }, 3000);
-            }, 3000);
+                bootScreen.addEventListener('animationend', () => {
+                    setTimeout(() => {
+                        bootScreen.style.display = 'none';
+                        showLoadingText();
+                    }, 3000);
+                });
+            }, 2000);
         }
 
-        function openFolder(folderId) {
-            document.getElementById(folderId).style.display = 'block';
-        }
+        function showLoadingText() {
+            loadingText.style.display = 'block';
+            let dots = 0;
 
-        function closeFolder(folderId) {
-            document.getElementById(folderId).style.display = 'none';
+            const interval = setInterval(() => {
+                dots = (dots + 1) % 4;
+                loadingText.textContent = 'Starting WebsiteOS' + '.'.repeat(dots);
+            }, 500);
+
+            setTimeout(() => {
+                clearInterval(interval);
+                loadingText.style.display = 'none';
+                homescreen.style.display = 'block';
+            }, 3500);
         }
 
         bootSequence();
