@@ -27,18 +27,24 @@
         }
 
         #bootScreen img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        #imageLoader {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 0;
-            object-fit: contain;
-            animation: bootImageLoad 3s linear forwards;
+            height: 100%;
+            background: black;
+            animation: imageReveal 3s linear forwards;
         }
 
-        @keyframes bootImageLoad {
+        @keyframes imageReveal {
             to {
-                height: 100%;
+                top: 100%;
             }
         }
 
@@ -58,6 +64,36 @@
             height: 100vh;
             background: url('https://upload.wikimedia.org/wikipedia/commons/5/5b/Windows_98_default_wallpaper.png') no-repeat center center/cover;
             cursor: default;
+        }
+
+        #dock {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            text-align: center;
+            color: white;
+        }
+
+        .icon img {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 5px;
         }
 
         .crt {
@@ -98,9 +134,20 @@
 </div>
 <div id="bootScreen">
     <img src="win98.jpg" alt="Booting Image">
+    <div id="imageLoader"></div>
 </div>
 <div id="homescreen">
     <div class="crt"></div>
+    <div id="dock">
+        <div class="icon">
+            <img src="https://via.placeholder.com/48x48" alt="Icon 1">
+            <span>App 1</span>
+        </div>
+        <div class="icon">
+            <img src="https://via.placeholder.com/48x48" alt="Icon 2">
+            <span>App 2</span>
+        </div>
+    </div>
 </div>
 <div id="loadingText" style="display: none;">Starting WebsiteOS...</div>
 <script>
