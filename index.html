@@ -48,6 +48,12 @@
             max-width: 800px;
         }
 
+        .info-box {
+            border: 2px solid white;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
         .loading-text span {
             animation: blink 1s infinite;
         }
@@ -62,9 +68,22 @@
     <!-- CRT Scan Lines -->
     <div class="crt"></div>
 
-    <!-- System Info Screen -->
-    <div id="system-info" class="screen">
+    <!-- Initial BIOS Screen -->
+    <div id="bios-screen" class="screen">
         <div class="text-box">
+            <p>WebsiteOS Booting Up...</p>
+            <p>Loading RAM:</p>
+            <p>[ 0000 ] .................................. [ 256MB ]</p>
+            <br>
+            <p>Detecting IDE Drives...</p>
+            <p>Pri. Master Disk: 2048MB</p>
+            <p>Sec. Master Disk: None</p>
+        </div>
+    </div>
+
+    <!-- System Info Screen -->
+    <div id="system-info" class="screen hidden">
+        <div class="text-box info-box">
             <p>CPU Type         : Intel Pentium ODP-MMX at 200 MHz</p>
             <p>Cache Memory     : 512 KB</p>
             <p>Memory Installed : 262144 KB DRAM</p>
@@ -99,6 +118,7 @@ Bus   Device   Device ID   Device Class
     </div>
 
     <script>
+        const biosScreen = document.getElementById('bios-screen');
         const systemInfoScreen = document.getElementById('system-info');
         const bootImageScreen = document.getElementById('boot-image');
         const startingOsScreen = document.getElementById('starting-os');
@@ -106,29 +126,33 @@ Bus   Device   Device ID   Device Class
 
         // Timing sequence
         setTimeout(() => {
-            systemInfoScreen.classList.add('hidden');
-            bootImageScreen.classList.remove('hidden');
+            biosScreen.classList.add('hidden');
+            systemInfoScreen.classList.remove('hidden');
 
-            // Gradually load the boot image
-            let clipValue = 100;
-            const interval = setInterval(() => {
-                clipValue -= 2;
-                bootImg.style.clipPath = `inset(${clipValue}% 0 0 0)`;
-                if (clipValue <= 0) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        bootImageScreen.classList.add('hidden');
-                        startingOsScreen.classList.remove('hidden');
+            setTimeout(() => {
+                systemInfoScreen.classList.add('hidden');
+                bootImageScreen.classList.remove('hidden');
 
-                        // Show "Starting WebsiteOS..." for 5 seconds
+                // Gradually load the boot image
+                let clipValue = 100;
+                const interval = setInterval(() => {
+                    clipValue -= 2;
+                    bootImg.style.clipPath = `inset(${clipValue}% 0 0 0)`;
+                    if (clipValue <= 0) {
+                        clearInterval(interval);
                         setTimeout(() => {
-                            // Transition to desktop (implement as needed)
-                            console.log('Transitioning to desktop...');
-                        }, 5000);
-                    }, 500);
-                }
-            }, 50);
-        }, 5000); // Display system info screen for 5 seconds
+                            bootImageScreen.classList.add('hidden');
+                            startingOsScreen.classList.remove('hidden');
+
+                            // Show "Starting WebsiteOS..." for 5 seconds
+                            setTimeout(() => {
+                                console.log('Transitioning to desktop...');
+                            }, 5000);
+                        }, 500);
+                    }
+                }, 50);
+            }, 5000); // System info screen duration
+        }, 5000); // BIOS screen duration
     </script>
 </body>
 </html>
