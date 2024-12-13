@@ -2,15 +2,109 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebsiteOS Boot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WebsiteOS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: "Courier New", Courier, monospace;
+        /* Reset margins and padding for all elements */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            background: black;
+            color: white;
             overflow: hidden;
+        }
+
+        #terminal {
+            height: 100vh;
+            padding: 20px;
+            white-space: pre-wrap;
+        }
+
+        #bootScreen {
+            display: none;
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+        }
+
+        #bootScreen img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #imageLoader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            animation: imageReveal 3s linear forwards;
+        }
+
+        @keyframes imageReveal {
+            to {
+                top: 100%;
+            }
+        }
+
+        #websiteOSLogo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: lime;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        #homescreen {
+            display: none;
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/5/5b/Windows_98_default_wallpaper.png') no-repeat center center/cover;
+            cursor: default;
+        }
+
+        #dock {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            text-align: center;
+            color: white;
+        }
+
+        .icon img {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 5px;
         }
 
         .crt {
@@ -19,140 +113,161 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1000;
-            pointer-events: none;
             background: repeating-linear-gradient(
-                0deg,
-                rgba(255, 255, 255, 0.05),
-                rgba(255, 255, 255, 0.05) 1px,
-                rgba(0, 0, 0, 0.05) 1px,
-                rgba(0, 0, 0, 0.05) 3px
+                to bottom,
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.1) 2px,
+                transparent 2px,
+                transparent 4px
             );
+            pointer-events: none;
+            z-index: 9999; /* Ensure scan lines are on top of everything */
+            animation: crt-lines 0.3s infinite linear;
         }
 
-        .screen {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
+        @keyframes crt-lines {
+            0% { background-position-y: 0; }
+            100% { background-position-y: 10px; }
         }
 
-        .screen.hidden {
+        #loadingText {
             display: none;
-        }
-
-        .text-box {
-            text-align: left;
-            width: 90%;
-            max-width: 800px;
-        }
-
-        .info-box {
-            border: 2px solid white;
-            padding: 15px;
-            margin-top: 20px;
-        }
-
-        .loading-text span {
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+            position: absolute;
+            top: 10px; /* Positioned at the top */
+            left: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            background: black; /* Black background */
+            color: white; /* White text */
         }
     </style>
 </head>
 <body>
-    <!-- CRT Scan Lines -->
-    <div class="crt"></div>
-
-    <!-- Initial BIOS Screen -->
-    <div id="bios-screen" class="screen">
-        <div class="text-box">
-            <p>WebsiteOS Booting Up...</p>
-            <p>Loading RAM:</p>
-            <p>[ 0000 ] .................................. [ 256MB ]</p>
-            <br>
-            <p>Detecting IDE Drives...</p>
-            <p>Pri. Master Disk: 2048MB</p>
-            <p>Sec. Master Disk: None</p>
+<div id="terminal">
+    <div id="websiteOSLogo">WebsiteOS</div>
+</div>
+<div id="bootScreen">
+    <img src="win98.jpg" alt="Booting Image">
+    <div id="imageLoader"></div>
+    <div class="crt"></div> <!-- CRT effect -->
+</div>
+<div id="homescreen">
+    <div class="crt"></div> <!-- CRT effect for desktop -->
+    <div id="dock">
+        <div class="icon">
+            <img src="https://via.placeholder.com/48x48" alt="Icon 1">
+            <span>App 1</span>
+        </div>
+        <div class="icon">
+            <img src="https://via.placeholder.com/48x48" alt="Icon 2">
+            <span>App 2</span>
         </div>
     </div>
+</div>
+<div id="loadingText" class="crt">Starting WebsiteOS...</div>
+<audio id="buttonSound" src="https://freesound.org/data/previews/320/320655_4939433-lq.mp3"></audio>
+<audio id="startupSound" src="https://freesound.org/data/previews/218/218365_4082826-lq.mp3"></audio>
+<script>
+    const terminal = document.getElementById('terminal');
+    const bootScreen = document.getElementById('bootScreen');
+    const homescreen = document.getElementById('homescreen');
+    const loadingText = document.getElementById('loadingText');
+    const buttonSound = document.getElementById('buttonSound');
+    const startupSound = document.getElementById('startupSound');
 
-    <!-- System Info Screen -->
-    <div id="system-info" class="screen hidden">
-        <div class="text-box info-box">
-            <p>CPU Type         : Intel Pentium ODP-MMX at 200 MHz</p>
-            <p>Cache Memory     : 512 KB</p>
-            <p>Memory Installed : 262144 KB DRAM</p>
-            <p>Pri. Master Disk : 2048MB</p>
-            <p>Pri. Slave Disk  : None</p>
-            <p>Sec. Master Disk : None</p>
-            <p>Display Type     : VGA Compatible</p>
-            <br>
-            <p>PCI Device Listing...</p>
-            <pre>
-Bus   Device   Device ID   Device Class
-0     10       1234        Display Controller
-0     12       5678        Storage Controller
-0     15       9012        Network Controller
-            </pre>
-            <p>Initialization finished...</p>
-        </div>
-    </div>
+    const bootMessages = [
+        'Award Modular BIOS v4.60PGA, An Energy Star Ally\n',
+        'Copyright (C) 1984-98, Award Software, Inc.\n',
+        'Version JE4333\n',
+        '\n'
+    ];
 
-    <!-- Boot Image Loading -->
-    <div id="boot-image" class="screen hidden">
-        <div style="position: relative; width: 100%; height: 100%; overflow: hidden;">
-            <img src="win98.jpg" alt="Boot Screen" style="position: absolute; width: 100%; height: 100%; object-fit: cover; clip-path: inset(100% 0 0 0);" id="boot-img">
-        </div>
-    </div>
+    const detectMessages = [
+        'Detecting IDE Primary Master... ',
+        'Detecting IDE Primary Slave... ',
+        'Detecting IDE Secondary Master... ',
+        'Detecting IDE Secondary Slave... ',
+    ];
 
-    <!-- Starting WebsiteOS -->
-    <div id="starting-os" class="screen hidden">
-        <div class="text-box">
-            <p>Starting WebsiteOS<span class="loading-text">...</span></p>
-        </div>
-    </div>
+    const ramTotal = 262144;
 
-    <script>
-        const biosScreen = document.getElementById('bios-screen');
-        const systemInfoScreen = document.getElementById('system-info');
-        const bootImageScreen = document.getElementById('boot-image');
-        const startingOsScreen = document.getElementById('starting-os');
-        const bootImg = document.getElementById('boot-img');
+    function typeMessage(message, delay = 500) {
+        return new Promise(resolve => {
+            terminal.innerHTML += message;
+            setTimeout(resolve, delay);
+        });
+    }
 
-        // Timing sequence
+    async function loadRAM() {
+        let ramValue = 0;
+        while (ramValue <= ramTotal) {
+            terminal.innerHTML = terminal.innerHTML.replace(/Memory Test: .*/, `Memory Test: ${ramValue}K`);
+            ramValue += 4096; // Faster increment.
+            await new Promise(resolve => setTimeout(resolve, 10)); // Faster delay.
+        }
+        terminal.innerHTML += ` OK\n`;
+    }
+
+    async function detectHardDrives() {
+        for (let i = 0; i < detectMessages.length; i++) {
+            await typeMessage(detectMessages[i], 1000);
+            if (i === 0) {
+                await typeMessage('Detected\n', 500); // Make Primary Master detected.
+            } else {
+                await typeMessage('None\n', 500);
+            }
+        }
+    }
+
+    async function bootSequence() {
+        buttonSound.play();
+        await new Promise(resolve => setTimeout(resolve, 500));
+        startupSound.play();
+
+        for (const message of bootMessages) {
+            await typeMessage(message);
+        }
+
+        // Simulate RAM loading.
+        await typeMessage('PENTIUM ODP-MMX CPU at 200MHz\n', 500);
+        terminal.innerHTML += 'Memory Test: ';
+        await loadRAM();
+
+        await typeMessage('\nAward Plug and Play BIOS Extension v1.0A\n', 500);
+        await typeMessage('Copyright (C) 1998, Award Software, Inc.\n', 500);
+
+        // Simulate hard drive detection.
+        await detectHardDrives();
+
         setTimeout(() => {
-            biosScreen.classList.add('hidden');
-            systemInfoScreen.classList.remove('hidden');
+            terminal.style.display = 'none';
+            bootScreen.style.display = 'block';
+            bootScreen.addEventListener('animationend', () => {
+                setTimeout(() => {
+                    bootScreen.style.display = 'none';
+                    showLoadingText();
+                }, 3000); // Timer starts after the image finishes loading.
+            });
+        }, 2000); // Delay after terminal messages.
+    }
 
-            setTimeout(() => {
-                systemInfoScreen.classList.add('hidden');
-                bootImageScreen.classList.remove('hidden');
+    function showLoadingText() {
+        loadingText.style.display = 'block';
+        let dots = 0;
 
-                // Gradually load the boot image
-                let clipValue = 100;
-                const interval = setInterval(() => {
-                    clipValue -= 2;
-                    bootImg.style.clipPath = `inset(${clipValue}% 0 0 0)`;
-                    if (clipValue <= 0) {
-                        clearInterval(interval);
-                        setTimeout(() => {
-                            bootImageScreen.classList.add('hidden');
-                            startingOsScreen.classList.remove('hidden');
+        const interval = setInterval(() => {
+            dots = (dots + 1) % 4;
+            loadingText.textContent = 'Starting WebsiteOS' + '.'.repeat(dots);
+        }, 500);
 
-                            // Show "Starting WebsiteOS..." for 5 seconds
-                            setTimeout(() => {
-                                console.log('Transitioning to desktop...');
-                            }, 5000);
-                        }, 500);
-                    }
-                }, 50);
-            }, 5000); // System info screen duration
-        }, 5000); // BIOS screen duration
-    </script>
+        setTimeout(() => {
+            clearInterval(interval);
+            loadingText.style.display = 'none';
+            homescreen.style.display = 'block';
+        }, 3500); // Show desktop after 3.5 seconds.
+    }
+
+    bootSequence();
+</script>
 </body>
 </html>
