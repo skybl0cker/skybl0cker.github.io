@@ -82,6 +82,14 @@
             0% { background-position-y: 0; }
             100% { background-position-y: 10px; }
         }
+
+        #loadingText {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -94,10 +102,12 @@
 <div id="homescreen">
     <div class="crt"></div>
 </div>
+<div id="loadingText" style="display: none;">Starting WebsiteOS...</div>
 <script>
     const terminal = document.getElementById('terminal');
     const bootScreen = document.getElementById('bootScreen');
     const homescreen = document.getElementById('homescreen');
+    const loadingText = document.getElementById('loadingText');
 
     let index = 0;
     const bootMessages = [
@@ -127,8 +137,8 @@
         let ramValue = 0;
         while (ramValue <= ramTotal) {
             terminal.innerHTML = terminal.innerHTML.replace(/Memory Test: .*/, `Memory Test: ${ramValue}K`);
-            ramValue += 2048; // Increment the RAM test count.
-            await new Promise(resolve => setTimeout(resolve, 20)); // Adjust speed of the count.
+            ramValue += 4096; // Faster increment.
+            await new Promise(resolve => setTimeout(resolve, 10)); // Faster delay.
         }
         terminal.innerHTML += ` OK\n`;
     }
@@ -169,10 +179,26 @@
                 bootScreen.style.display = 'block';
                 setTimeout(() => {
                     bootScreen.style.display = 'none';
-                    homescreen.style.display = 'block';
+                    showLoadingText();
                 }, 3000); // Boot screen visible for 3 seconds.
             }
         });
+    }
+
+    function showLoadingText() {
+        loadingText.style.display = 'block';
+        let dots = 0;
+
+        const interval = setInterval(() => {
+            dots = (dots + 1) % 4;
+            loadingText.textContent = 'Starting WebsiteOS' + '.'.repeat(dots);
+        }, 500);
+
+        setTimeout(() => {
+            clearInterval(interval);
+            loadingText.style.display = 'none';
+            homescreen.style.display = 'block';
+        }, 3500); // Show desktop after 3.5 seconds.
     }
 
     bootSequence();
