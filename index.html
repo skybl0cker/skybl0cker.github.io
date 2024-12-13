@@ -21,15 +21,17 @@
 
         #bootScreen {
             display: none;
+            position: relative;
+            width: 100vw;
             height: 100vh;
             background: black;
-            position: relative;
         }
 
         #bootScreen img {
+            position: absolute;
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
         }
 
         #imageLoader {
@@ -39,7 +41,7 @@
             width: 100%;
             height: 100%;
             background: black;
-            animation: imageReveal 3s linear forwards;
+            animation: imageReveal 5s linear forwards;
         }
 
         @keyframes imageReveal {
@@ -156,7 +158,6 @@
     const homescreen = document.getElementById('homescreen');
     const loadingText = document.getElementById('loadingText');
 
-    let index = 0;
     const bootMessages = [
         'Award Modular BIOS v4.60PGA, An Energy Star Ally\n',
         'Copyright (C) 1984-98, Award Software, Inc.\n',
@@ -219,17 +220,14 @@
 
         await typeMessage('\nPress DEL to enter SETUP\n', 500);
 
-        // Wait for the user to press Enter.
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                terminal.style.display = 'none';
-                bootScreen.style.display = 'block';
-                setTimeout(() => {
-                    bootScreen.style.display = 'none';
-                    showLoadingText();
-                }, 3000); // Boot screen visible for 3 seconds.
-            }
-        });
+        setTimeout(() => {
+            terminal.style.display = 'none';
+            bootScreen.style.display = 'block';
+            setTimeout(() => {
+                bootScreen.style.display = 'none';
+                showLoadingText();
+            }, 5000); // Boot screen visible for 5 seconds.
+        }, 2000); // Delay after terminal messages.
     }
 
     function showLoadingText() {
