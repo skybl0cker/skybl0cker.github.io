@@ -32,7 +32,7 @@
             left: 0;
             width: 100%;
             height: 0;
-            object-fit: cover;
+            object-fit: contain;
             animation: bootImageLoad 3s linear forwards;
         }
 
@@ -133,7 +133,7 @@
 <body>
 <div id="terminal"></div>
 <div id="bootScreen">
-    <img src= "win98.jpg" alt="Booting Image">
+    <img src="win98.png" alt="Booting Image">
 </div>
 <div id="homescreen">
     <div class="crt"></div>
@@ -160,11 +160,21 @@
     const loading = document.getElementById('loading');
 
     const bootMessages = [
-        'Initializing hardware...\\n',
-        'Loading kernel...\\n',
-        'Starting WebsiteOS...\\n',
-        'Welcome to WebsiteOS!\\n',
-        'Press ENTER to continue.\\n'
+        'Award Modular BIOS v4.60PGA, An Energy Star Ally\n',
+        'Copyright (C) 1984-98, Award Software, Inc.\n',
+        'Version JE4333\n',
+        '\n',
+        'PENTIUM ODP-MMX CPU at 200MHz\n',
+        'Memory Test: 262144K OK\n',
+        '\n',
+        'Award Plug and Play BIOS Extension v1.0A\n',
+        'Copyright (C) 1998, Award Software, Inc.\n',
+        'Detecting IDE Primary Master... None\n',
+        'Detecting IDE Primary Slave... None\n',
+        'Detecting IDE Secondary Master... None\n',
+        'Detecting IDE Secondary Slave... None\n',
+        '\n',
+        'Press DEL to enter SETUP\n'
     ];
 
     let index = 0;
@@ -173,7 +183,7 @@
         if (index < bootMessages.length) {
             terminal.innerHTML += bootMessages[index];
             index++;
-            setTimeout(typeMessage, 1000);
+            setTimeout(typeMessage, 500);
         } else {
             document.addEventListener('keydown', showBootScreen);
         }
