@@ -79,7 +79,7 @@
 
         #dock {
             position: absolute;
-            bottom: 20px;
+            bottom: 60px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -105,6 +105,50 @@
             width: 48px;
             height: 48px;
             margin-bottom: 5px;
+        }
+
+        #taskbar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background: rgb(192, 192, 192);
+            display: flex;
+            align-items: center;
+            border-top: 2px solid #808080;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        #startButton {
+            width: 80px;
+            height: 100%;
+            background: rgb(192, 192, 192);
+            border: 2px solid #ffffff;
+            border-right-color: #808080;
+            border-bottom-color: #808080;
+            font-family: 'Courier New', Courier, monospace;
+            color: black;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+        }
+
+        #startButton:hover {
+            background: rgb(128, 128, 128);
+        }
+
+        #taskbarIcons {
+            display: flex;
+            gap: 10px;
+            margin-left: 10px;
+        }
+
+        .taskbarIcon {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border: 1px solid black;
         }
 
         .crt {
@@ -161,6 +205,13 @@
         <div class="icon">
             <img src="https://via.placeholder.com/48x48" alt="Icon 2">
             <span>App 2</span>
+        </div>
+    </div>
+    <div id="taskbar">
+        <div id="startButton">Start</div>
+        <div id="taskbarIcons">
+            <div class="taskbarIcon"></div>
+            <div class="taskbarIcon"></div>
         </div>
     </div>
 </div>
