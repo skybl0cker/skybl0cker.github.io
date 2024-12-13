@@ -8,7 +8,7 @@
     <style>
         body {
             background: black;
-            color: green;
+            color: white;
             font-family: 'Courier New', Courier, monospace;
             overflow: hidden;
         }
@@ -42,6 +42,15 @@
             }
         }
 
+        #websiteOSLogo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: lime;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
         #homescreen {
             display: none;
             position: relative;
@@ -73,142 +82,100 @@
             0% { background-position-y: 0; }
             100% { background-position-y: 10px; }
         }
-
-        .icon {
-            position: absolute;
-            width: 64px;
-            height: 64px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .icon img {
-            width: 100%;
-        }
-
-        .icon span {
-            display: block;
-            font-size: 12px;
-            color: white;
-        }
-
-        #loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            display: none;
-        }
-
-        .taskbar {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 40px;
-            background: #333;
-            display: flex;
-            align-items: center;
-            padding: 0 10px;
-        }
-
-        .taskbar button {
-            background: #555;
-            border: none;
-            color: white;
-            padding: 2px 5px;
-            margin-right: 10px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        .taskbar .taskbar-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-            background: #444;
-        }
     </style>
 </head>
 <body>
-<div id="terminal"></div>
+<div id="terminal">
+    <div id="websiteOSLogo">WebsiteOS</div>
+</div>
 <div id="bootScreen">
-    <img src="win98.png" alt="Booting Image">
+    <img src="win98.jpg" alt="Booting Image">
 </div>
 <div id="homescreen">
     <div class="crt"></div>
-    <div class="icon" style="top: 20%; left: 10%;" onclick="openApp('about.html')">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Windows_98_folder_icon.png" alt="Folder Icon">
-        <span>About Me</span>
-    </div>
-    <div class="icon" style="top: 40%; left: 20%;" onclick="openApp('portfolio.html')">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Windows_98_folder_icon.png" alt="Folder Icon">
-        <span>Portfolio</span>
-    </div>
-    <div id="loading">Loading...</div>
-    <div class="taskbar">
-        <button onclick="alert('Start menu clicked!')">Start</button>
-        <div class="taskbar-icon"></div>
-        <div class="taskbar-icon"></div>
-        <div class="taskbar-icon"></div>
-    </div>
 </div>
 <script>
     const terminal = document.getElementById('terminal');
     const bootScreen = document.getElementById('bootScreen');
     const homescreen = document.getElementById('homescreen');
-    const loading = document.getElementById('loading');
 
+    let index = 0;
     const bootMessages = [
         'Award Modular BIOS v4.60PGA, An Energy Star Ally\n',
         'Copyright (C) 1984-98, Award Software, Inc.\n',
         'Version JE4333\n',
-        '\n',
-        'PENTIUM ODP-MMX CPU at 200MHz\n',
-        'Memory Test: 262144K OK\n',
-        '\n',
-        'Award Plug and Play BIOS Extension v1.0A\n',
-        'Copyright (C) 1998, Award Software, Inc.\n',
-        'Detecting IDE Primary Master... None\n',
-        'Detecting IDE Primary Slave... None\n',
-        'Detecting IDE Secondary Master... None\n',
-        'Detecting IDE Secondary Slave... None\n',
-        '\n',
-        'Press DEL to enter SETUP\n'
+        '\n'
     ];
 
-    let index = 0;
+    const detectMessages = [
+        'Detecting IDE Primary Master... ',
+        'Detecting IDE Primary Slave... ',
+        'Detecting IDE Secondary Master... ',
+        'Detecting IDE Secondary Slave... ',
+    ];
 
-    function typeMessage() {
-        if (index < bootMessages.length) {
-            terminal.innerHTML += bootMessages[index];
-            index++;
-            setTimeout(typeMessage, 500);
-        } else {
-            document.addEventListener('keydown', showBootScreen);
+    const ramTotal = 262144;
+
+    function typeMessage(message, delay = 500) {
+        return new Promise(resolve => {
+            terminal.innerHTML += message;
+            setTimeout(resolve, delay);
+        });
+    }
+
+    async function loadRAM() {
+        let ramValue = 0;
+        while (ramValue <= ramTotal) {
+            terminal.innerHTML = terminal.innerHTML.replace(/Memory Test: .*/, `Memory Test: ${ramValue}K`);
+            ramValue += 2048; // Increment the RAM test count.
+            await new Promise(resolve => setTimeout(resolve, 20)); // Adjust speed of the count.
+        }
+        terminal.innerHTML += ` OK\n`;
+    }
+
+    async function detectHardDrives() {
+        for (let i = 0; i < detectMessages.length; i++) {
+            await typeMessage(detectMessages[i], 1000);
+            if (i === 0) {
+                await typeMessage('Detected\n', 500); // Make Primary Master detected.
+            } else {
+                await typeMessage('None\n', 500);
+            }
         }
     }
 
-    function showBootScreen(event) {
-        if (event.key === 'Enter') {
-            terminal.style.display = 'none';
-            bootScreen.style.display = 'block';
-            setTimeout(() => {
-                bootScreen.style.display = 'none';
-                homescreen.style.display = 'block';
-            }, 3000);
+    async function bootSequence() {
+        for (const message of bootMessages) {
+            await typeMessage(message);
         }
+
+        // Simulate RAM loading.
+        await typeMessage('PENTIUM ODP-MMX CPU at 200MHz\n', 500);
+        terminal.innerHTML += 'Memory Test: ';
+        await loadRAM();
+
+        await typeMessage('\nAward Plug and Play BIOS Extension v1.0A\n', 500);
+        await typeMessage('Copyright (C) 1998, Award Software, Inc.\n', 500);
+
+        // Simulate hard drive detection.
+        await detectHardDrives();
+
+        await typeMessage('\nPress DEL to enter SETUP\n', 500);
+
+        // Wait for the user to press Enter.
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                terminal.style.display = 'none';
+                bootScreen.style.display = 'block';
+                setTimeout(() => {
+                    bootScreen.style.display = 'none';
+                    homescreen.style.display = 'block';
+                }, 3000); // Boot screen visible for 3 seconds.
+            }
+        });
     }
 
-    function openApp(url) {
-        loading.style.display = 'block';
-        setTimeout(() => {
-            loading.style.display = 'none';
-            window.location.href = url;
-        }, 3000);
-    }
-
-    typeMessage();
+    bootSequence();
 </script>
 </body>
 </html>
