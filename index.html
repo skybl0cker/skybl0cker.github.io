@@ -222,11 +222,13 @@
         const startupSound = document.getElementById('startupSound');
 
         const bootMessages = [
-            'Award Modular BIOS v4.60PGA, An Energy Star Ally\n',
-            'Copyright (C) 1984-98, Award Software, Inc.\n',
-            'Version JE4333\n',
-            '\n'
-        ];
+    'Award Modular BIOS v4.60PGA, An Energy Star Ally\n',
+    'Copyright (C) 1984-98, Award Software, Inc.\n',
+    'Version JE4333\n',
+    '\n',
+    'PENTIUM ODP-MMX CPU at 200MHz\n'
+];
+
 
         const detectMessages = [
             'Detecting IDE Primary Master... ',
@@ -278,7 +280,7 @@
             terminal.innerHTML += 'Memory Test: ';
             await loadRAM();
 
-            await typeMessage('Award Plug and Play BIOS Extension v1.0A\n', 500);
+            await typeMessage('\nAward Plug and Play BIOS Extension v1.0A\n', 500);
             await typeMessage('Copyright (C) 1998, Award Software, Inc.\n', 500);
 
             await detectHardDrives();
