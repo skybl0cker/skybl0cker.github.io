@@ -92,6 +92,7 @@
             text-align: center;
             margin-bottom: 15px;
             color: white;
+            cursor: pointer;
         }
 
         .desktopIcon img {
@@ -165,6 +166,46 @@
             background: black;
             color: white;
         }
+
+        #fileExplorer {
+            display: none;
+            position: fixed;
+            top: 50px;
+            left: 50px;
+            width: 60vw;
+            height: 60vh;
+            background: white;
+            color: black;
+            border: 2px solid black;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            padding: 10px;
+        }
+
+        #fileExplorer h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        #fileExplorer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #fileExplorer li {
+            margin-bottom: 5px;
+        }
+
+        #closeExplorer {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -184,7 +225,7 @@
     <div id="homescreen">
         <div class="crt"></div>
         <div id="desktopIcons">
-            <div class="desktopIcon">
+            <div class="desktopIcon" id="myComputer">
                 <img src="https://via.placeholder.com/48x48" alt="My Computer">
                 <span>My Computer</span>
             </div>
@@ -206,6 +247,18 @@
         </div>
     </div>
 
+    <!-- File Explorer -->
+    <div id="fileExplorer">
+        <button id="closeExplorer">X</button>
+        <h1>My Accomplishments</h1>
+        <ul>
+            <li>Built a responsive portfolio website.</li>
+            <li>Learned JavaScript frameworks like React and Vue.</li>
+            <li>Designed a user-friendly e-commerce interface.</li>
+            <li>Contributed to open-source projects.</li>
+        </ul>
+    </div>
+
     <!-- Loading text -->
     <div id="loadingText" class="crt">Starting WebsiteOS...</div>
 
@@ -220,6 +273,9 @@
         const loadingText = document.getElementById('loadingText');
         const buttonSound = document.getElementById('buttonSound');
         const startupSound = document.getElementById('startupSound');
+        const myComputer = document.getElementById('myComputer');
+        const fileExplorer = document.getElementById('fileExplorer');
+        const closeExplorer = document.getElementById('closeExplorer');
 
         const bootMessages = [
             'Award Modular BIOS v4.60PGA, An Energy Star Ally\n',
@@ -310,6 +366,14 @@
                 homescreen.style.display = 'block';
             }, 3500);
         }
+
+        myComputer.addEventListener('click', () => {
+            fileExplorer.style.display = 'block';
+        });
+
+        closeExplorer.addEventListener('click', () => {
+            fileExplorer.style.display = 'none';
+        });
 
         bootSequence();
     </script>
