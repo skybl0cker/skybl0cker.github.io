@@ -60,15 +60,6 @@
             }
         }
 
-        #websiteOSLogo {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: lime;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
         /* Desktop styles */
         #homescreen {
             display: none;
@@ -229,26 +220,46 @@
         </div>
     </div>
 
+    <!-- Loading text -->
+    <div id="loadingText" class="crt">Starting WebsiteOS...</div>
+
     <!-- Audio -->
     <audio id="startupSound" src="https://freesound.org/data/previews/218/218365_4082826-lq.mp3"></audio>
 
     <script>
-        const terminal = document.getElementById('terminal');
-        const bootScreen = document.getElementById('bootScreen');
-        const homescreen = document.getElementById('homescreen');
-        const startupSound = document.getElementById('startupSound');
+        const terminal = document.getElementById("terminal");
+        const bootScreen = document.getElementById("bootScreen");
+        const homescreen = document.getElementById("homescreen");
+        const loadingText = document.getElementById("loadingText");
+        const startupSound = document.getElementById("startupSound");
 
-        // Boot sequence
         function bootSequence() {
             setTimeout(() => {
                 terminal.style.display = "none";
                 bootScreen.style.display = "block";
+
                 setTimeout(() => {
                     bootScreen.style.display = "none";
-                    homescreen.style.display = "block";
-                    startupSound.play();
+                    showLoadingText();
                 }, 3000);
             }, 5000);
+        }
+
+        function showLoadingText() {
+            loadingText.style.display = "block";
+            let dots = 0;
+
+            const interval = setInterval(() => {
+                dots = (dots + 1) % 4;
+                loadingText.textContent = "Starting WebsiteOS" + ".".repeat(dots);
+            }, 500);
+
+            setTimeout(() => {
+                clearInterval(interval);
+                loadingText.style.display = "none";
+                homescreen.style.display = "block";
+                startupSound.play();
+            }, 3500);
         }
 
         bootSequence();
