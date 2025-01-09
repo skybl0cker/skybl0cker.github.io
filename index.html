@@ -91,6 +91,7 @@
             z-index: 1000;
             padding: 10px;
             overflow: auto;
+            cursor: grab;
         }
 
         .window h1 {
@@ -98,6 +99,7 @@
             margin: 0;
             background: #c0c0c0;
             padding: 5px;
+            cursor: grab;
         }
 
         #taskbar {
@@ -170,7 +172,7 @@
         <div class="crt"></div>
 
         <!-- Window 1: Who I Am -->
-        <div class="window" style="top: 50px; left: 50px;">
+        <div class="window" id="window1" style="top: 50px; left: 50px;">
             <h1>Who I Am</h1>
             <div>
                 <p>Hello! I am Cash Egley, a High School hobbiest Flutter Dev.</p>
@@ -178,7 +180,7 @@
         </div>
 
         <!-- Window 2: What I'm Good At -->
-        <div class="window" style="top: 350px; left: 500px;">
+        <div class="window" id="window2" style="top: 350px; left: 500px;">
             <h1>What I’m Good At</h1>
             <div>
                 <ul>
@@ -190,7 +192,7 @@
         </div>
 
         <!-- Window 3: What I Do -->
-        <div class="window" style="top: 150px; left: 150px;">
+        <div class="window" id="window3" style="top: 150px; left: 600px;">
             <h1>What I Do</h1>
             <div>
                 <p>I am one of the Team Captains for FRC 3824 the HVA RoHAWKTics, I also program and make/work on electronics as a hobby.</p>
@@ -200,7 +202,7 @@
         <!-- Taskbar -->
         <div id="taskbar">
             <div id="startMenuButton">
-                <img src="win98logo.png" alt="Start" style="height: 20px; width: 20px;">
+                <img src="https://via.placeholder.com/16x16" alt="Start">
                 <span>Start</span>
             </div>
             <div id="taskbarClock">12:37 PM</div>
@@ -264,7 +266,36 @@
             }, 2000); // Delay after terminal messages
         }
 
+        // Drag functionality
+        function makeDraggable(element) {
+            let offsetX = 0, offsetY = 0, isDragging = false;
+
+            element.querySelector('h1').addEventListener('mousedown', (e) => {
+                offsetX = e.clientX - element.offsetLeft;
+                offsetY = e.clientY - element.offsetTop;
+                isDragging = true;
+                element.style.cursor = 'grabbing';
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    element.style.left = `${e.clientX - offsetX}px`;
+                    element.style.top = `${e.clientY - offsetY}px`;
+                }
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+                element.style.cursor = 'grab';
+            });
+        }
+
         bootSequence();
+
+        // Make all windows draggable
+        makeDraggable(document.getElementById('window1'));
+        makeDraggable(document.getElementById('window2'));
+        makeDraggable(document.getElementById('window3'));
     </script>
 </body>
 </html>
