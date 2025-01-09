@@ -38,6 +38,38 @@
             font-weight: bold;
         }
 
+        /* Boot screen */
+        #bootScreen {
+            display: none;
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+        }
+
+        #bootScreen img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #imageLoader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            animation: imageReveal 3s linear forwards;
+        }
+
+        @keyframes imageReveal {
+            to {
+                top: 100%;
+            }
+        }
+
         /* Desktop styles */
         #homescreen {
             display: none;
@@ -126,6 +158,13 @@
         <div id="websiteOSLogo">WebsiteOS</div>
     </div>
 
+    <!-- Boot screen -->
+    <div id="bootScreen">
+        <img src="win98.jpg" alt="Booting Image">
+        <div id="imageLoader"></div>
+        <div class="crt"></div>
+    </div>
+
     <!-- Desktop screen -->
     <div id="homescreen">
         <div class="crt"></div>
@@ -161,7 +200,7 @@
         <!-- Taskbar -->
         <div id="taskbar">
             <div id="startMenuButton">
-                <img src="win98logo.png" alt="Start" style="top: 16px; left: 16x;"> 
+                <img src="win98logo.png" alt="Start" style="height: 16px; width: 16px;">
                 <span>Start</span>
             </div>
             <div id="taskbarClock">12:37 PM</div>
@@ -170,6 +209,7 @@
 
     <script>
         const terminal = document.getElementById("terminal");
+        const bootScreen = document.getElementById("bootScreen");
         const homescreen = document.getElementById("homescreen");
 
         const bootMessages = [
@@ -215,8 +255,13 @@
 
             setTimeout(() => {
                 terminal.style.display = "none";
-                homescreen.style.display = "block";
-            }, 2000);
+                bootScreen.style.display = "block";
+
+                setTimeout(() => {
+                    bootScreen.style.display = "none";
+                    homescreen.style.display = "block";
+                }, 3000); // Show boot screen for 3 seconds
+            }, 2000); // Delay after terminal messages
         }
 
         bootSequence();
