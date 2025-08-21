@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GitHub | Skybl0cker</title>
+    <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo.png">
+    <style>
+        body {
+            background-color: #2c2c2c;
+            color: #ffffff; /* Set all text to white */
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff; /* Ensure header is white */
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Ensure all images are 300x150 */
+        .card img {
+            width: 300px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            color: #ffffff; /* Ensure card titles are white */
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #ffffff; /* Ensure paragraph text is white */
+        }
+
+        .badges {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Add space between badges */
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background-color: #444;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: #ffffff; /* Ensure badge text is white */
+        }
+
+        a {
+            color: #ffffff; /* Ensure links are white */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation Styling */
+        nav {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav ul li a {
+            color: #ffffff; /* Ensure nav links are white */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            h3 {
+                font-size: 1.5rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html">/home</a></li>
+            <li><a href="youtube.html">/youtube</a></li>
+            <li><a href="github.html">/github</a></li>
+            <li><a href="about.html">/about</a></li>
+        </ul>
+    </nav>
+
+    <h1>My GitHub Projects</h1>
+
+    <!-- Cards Layout -->
+    <div class="card-grid">
+        <!-- Project 1: ScoutinFRC -->
+        <div class="card">
+            <img src="scouting.jpg" alt="ScoutinFRC Project"> <!-- Replace with your image -->
+            <h3>ScoutinFRC</h3>
+            <p>A scouting application designed for FIRST Robotics Competition. It helps teams collect and analyze data on competing robots during events.</p>
+            <div class="badges">
+                <span class="badge">Dart</span>
+                <span class="badge">Flutter</span>
+            </div>
+            <a href="https://github.com/HVA-FRC-3824/ScoutinFRC" target="_blank">View Project</a>
+        </div>
+
+        <!-- Project 2: Flutter Scouting Framework -->
+        <div class="card">
+            <img src="framework.jpg" alt="Flutter Scouting Framework"> <!-- Replace with your image -->
+            <h3>Flutter Scouting Framework</h3>
+            <p>A mobile-first framework built using Flutter for scouting purposes, used as a teaching resource for Flutter.</p>
+            <div class="badges">
+                <span class="badge">Dart</span>
+                <span class="badge">Flutter</span>
+            </div>
+            <a href="https://github.com/HVA-FRC-3824/ScoutingFramework" target="_blank">View Project</a>
+        </div>
+
+        <!-- Project 3: My Website -->
+        <div class="card">
+            <img src="website.webp" alt="My Website"> <!-- Replace with your image -->
+            <h3>My Website</h3>
+            <p>This website showcases my projects and coding skills, and links to my YouTube channel and GitHub repositories.</p>
+            <div class="badges">
+                <span class="badge">HTML</span>
+                <span class="badge">CSS</span>
+                <span class="badge">JavaScript</span>
+            </div>
+            <a href="https://github.com/skybl0cker/skybl0cker.github.io" target="_blank">View Project</a>
+        </div>
+
+        <!-- New Project 1: FRC Simulator -->
+        <div class="card">
+            <img src="crescendo.jpg" alt="FRC Simulator"> <!-- Replace with your image -->
+            <h3>FRC Simulator</h3>
+            <p>A simulator for FRC, allowing people to relive old FRC game and play against friends locally and online.</p>
+            <div class="badges">
+                <span class="badge">C#</span>
+            </div>
+            <p>Coming soon...</p>
+        </div>
+
+        <!-- New Project 2: ScoutinFRC Website -->
+        <div class="card">
+            <img src="scouting.jpg" alt="ScoutinFRC Website"> <!-- Replace with your image -->
+            <h3>ScoutinFRC Website</h3>
+            <p>A web-based version of the ScoutinFRC app, developed to allow users to view scouting data and interact with the app directly in their browsers. The website is built using HTML, CSS, and JavaScript.</p>
+            <div class="badges">
+                <span class="badge">HTML</span>
+                <span class="badge">CSS</span>
+                <span class="badge">JavaScript</span>
+            </div>
+            <p>Coming soon...</p>
+        </div>
+
+        <!-- New Project 3: Sky Browser -->
+        <div class="card">
+            <img src="web.webp" alt="Sky Browser"> <!-- Replace with your image -->
+            <h3>Sky Browser</h3>
+            <p>A custom web browser built using Dart and Flutter, designed to offer a lightweight and customizable browsing experience. This project explores the potential of Flutter beyond mobile apps, pushing its capabilities in desktop app development.</p>
+            <div class="badges">
+                <span class="badge">Dart</span>
+                <span class="badge">Flutter</span>
+            </div>
+            <p>Coming soon...</p>
+        </div>
+    </div>
+
+</body>
+</html>
