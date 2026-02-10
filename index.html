@@ -12,6 +12,20 @@
 
 <body>
 
+    <!-- Startup Screen -->
+    <div id="startup-screen">
+        <div class="startup-content">
+            <img src="https://win98icons.alexmeub.com/icons/png/windows_slanted-1.png" alt="Windows 98"
+                style="width: 100px; height: 100px;">
+            <h1
+                style="font-family: 'Pixelated MS Sans Serif', Arial, sans-serif; color: white; font-size: 48px; margin: 20px 0;">
+                Windows<span style="font-size: 24px; vertical-align: super;">98</span></h1>
+            <div class="progress-bar-container">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="desktop">
 
         <!-- Desktop Icons -->
@@ -33,6 +47,21 @@
         <div class="desktop-icon" data-target="window-youtube">
             <img src="https://www.youtube.com/s/desktop/2a3cb36e/img/favicon.ico" alt="YouTube">
             <span>YouTube</span>
+        </div>
+
+        <div class="desktop-icon" data-target="window-notepad">
+            <img src="https://win98icons.alexmeub.com/icons/png/notepad-0.png" alt="Notepad">
+            <span>Notepad</span>
+        </div>
+
+        <div class="desktop-icon" data-target="window-audio">
+            <img src="https://win98icons.alexmeub.com/icons/png/cd_audio_cd_a-4.png" alt="Media Player">
+            <span>Media Player</span>
+        </div>
+
+        <div class="desktop-icon" data-target="window-minesweeper">
+            <img src="https://win98icons.alexmeub.com/icons/png/game_mine_1-0.png" alt="Minesweeper">
+            <span>Minesweeper</span>
         </div>
 
         <div class="desktop-icon" data-target="window-trash">
@@ -140,7 +169,7 @@
                     <div class="project-card">
                         <h4>My Website</h4>
                         <img src="website.webp" class="project-image" alt="Website">
-                        <p>This website! (Meta, huh?)</p>
+                        <p>This website!</p>
                         <p><a href="https://github.com/skybl0cker/skybl0cker.github.io" target="_blank">View Repo</a>
                         </p>
                     </div>
@@ -189,6 +218,84 @@
             </div>
         </div>
 
+        <!-- Audio Player Window -->
+        <div id="window-audio" class="window" style="width: 300px;">
+            <div class="title-bar">
+                <div class="title-bar-text">Media Player</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div class="media-player">
+                    <div class="visualizer">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                    <div class="controls">
+                        <button id="play-btn">Play</button>
+                        <button id="stop-btn">Stop</button>
+                    </div>
+                    <p>Now Playing: Canyon.mid</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notepad Window -->
+        <div id="window-notepad" class="window" style="width: 400px; height: 300px;">
+            <div class="title-bar">
+                <div class="title-bar-text">Notepad</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body" style="padding: 0; display: flex; flex-direction: column;">
+                <textarea id="notepad-content"
+                    style="flex: 1; width: 100%; height: 100%; resize: none; border: none; font-family: 'Courier New', monospace; padding: 5px; box-sizing: border-box;"></textarea>
+            </div>
+        </div>
+
+        <!-- Minesweeper Window -->
+        <div id="window-minesweeper" class="window" style="width: auto; display: none;">
+            <div class="title-bar">
+                <div class="title-bar-text">Minesweeper</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div class="minesweeper-header">
+                    <div class="counter" id="mine-count">010</div>
+                    <button class="face-btn" id="face-btn">😊</button>
+                    <div class="counter" id="timer">000</div>
+                </div>
+                <div class="minesweeper-grid" id="minesweeper-grid"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BSOD Overlay -->
+    <div id="bsod"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #0000AA; color: white; z-index: 999999; font-family: 'Courier New', monospace; padding: 50px; box-sizing: border-box; cursor: none;">
+        <p
+            style="background: #AAAAAA; color: #0000AA; display: inline-block; padding: 2px 5px; font-weight: bold; margin-bottom: 20px;">
+            Windows</p>
+        <p>A fatal exception 0E has occurred at 0028:C0011E36 in VXD VMM(01) + 00010E36. The current application will be
+            terminated.</p>
+        <p>* Press any key to terminate the current application.</p>
+        <p>* Press CTRL+ALT+DEL to restart your computer. You will lose any unsaved information in all applications.</p>
+        <br>
+        <p style="text-align: center;">Press any key to continue_</p>
     </div>
 
     <!-- Start Menu -->
@@ -206,7 +313,7 @@
                 YouTube
             </div>
             <div class="start-divider"></div>
-            <div class="start-item" onclick="alert('Shutting down... just kidding!')">
+            <div class="start-item" onclick="alert('Shutting down... or not')">
                 <img src="https://win98icons.alexmeub.com/icons/png/shut_down_normal-2.png" alt="Shutdown">
                 Shut Down...
             </div>

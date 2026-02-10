@@ -16,12 +16,8 @@ body {
   height: calc(100vh - 28px);
   /* Height minus taskbar */
   position: relative;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  gap: 20px;
+  /* Icons will be absolute positioned by JS */
+  overflow: hidden;
 }
 
 /* Desktop Icons */
@@ -35,6 +31,8 @@ body {
   cursor: pointer;
   padding: 5px;
   border: 1px dotted transparent;
+  position: absolute;
+  /* Changed for draggable */
 }
 
 .desktop-icon:active {
@@ -315,4 +313,162 @@ iframe {
 
 .window.maximized .window-body {
   height: calc(100vh - 28px - 30px);
+}
+
+/* Startup Screen */
+#startup-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 100000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.startup-content {
+  text-align: center;
+}
+
+.progress-bar-container {
+  width: 300px;
+  height: 20px;
+  background: #808080;
+  border: 2px solid #fff;
+  margin: 20px auto;
+  position: relative;
+  box-shadow: inset 2px 2px 0px 0px #000, inset -1px -1px 0px 0px #fff;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(to right, #000080, #1084d0);
+  animation: load 3s linear forwards;
+}
+
+@keyframes load {
+  0% {
+    width: 0%;
+  }
+
+  20% {
+    width: 10%;
+  }
+
+  50% {
+    width: 40%;
+  }
+
+  80% {
+    width: 90%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+/* Media Player */
+.media-player {
+  text-align: center;
+}
+
+.visualizer {
+  height: 50px;
+  background: black;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 2px;
+  gap: 2px;
+}
+
+.visualizer .bar {
+  width: 10px;
+  background: lime;
+  height: 5%;
+  /* Base height */
+  transition: height 0.05s ease;
+  /* Smooth out JS updates slightly */
+}
+
+/* Minesweeper */
+.minesweeper-header {
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.counter {
+  background: black;
+  color: red;
+  font-family: 'Courier New', monospace;
+  font-size: 20px;
+  padding: 2px;
+  border: 1px solid #808080;
+}
+
+.face-btn {
+  width: 26px;
+  height: 26px;
+  font-size: 18px;
+  padding: 0;
+  line-height: 24px;
+}
+
+.minesweeper-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 20px);
+  gap: 0;
+  border: 3px solid;
+  border-color: #808080 #fff #fff #808080;
+}
+
+.mine-cell {
+  width: 20px;
+  height: 20px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #fff #808080 #808080 #fff;
+  cursor: default;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+
+.mine-cell:active {
+  border: none;
+  border: 1px solid #808080;
+  width: 20px;
+  height: 20px;
+}
+
+.mine-cell.revealed {
+  border: 1px solid #808080;
+  border-top: none;
+  /* Flat look */
+  border: 1px dotted #808080;
+  background: #c0c0c0;
+}
+
+.mine-cell.mine {
+  background: red;
+  color: black;
+}
+
+.mine-cell.flag {
+  color: red;
 }
